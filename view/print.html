@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>3D Printing</title>
+    <style>
+        body {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        /* Center the header title */
+        .header {
+            background-color: black; /* Black background color */
+            color: white; /* White text color */
+            padding: 20px 0; /* Add padding */
+            border-bottom: 5px solid #6d3ca4; /* Purple bottom border */
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Align items with space between */
+            align-items: center; /* Align items vertically */
+        }
+
+        /* Logo styles */
+        .logo img {
+            width: 100px; /* Set logo width */
+            height: auto; /* Maintain aspect ratio */
+            display: inline-block; /* Make the image inline */
+        }
+
+        /* Delta.Egy text styles */
+        .company-name {
+            margin-left: 10px; /* Add margin between logo and text */
+            display: inline-block; /* Make the text inline */
+            font-size: 30px;
+            font-family: Arial, sans-serif;
+            position: relative; /* Set position relative */
+            top: -40px; /* Move the text 10px upwards */
+        }
+
+        /* Additional elements styles */
+        .additional-elements {
+            display: flex; /* Use flexbox for layout */
+            margin-right: 10px;
+            font-size: 22px;
+        }
+
+        .additional-elements p {
+            margin-left: 10px; /* Add margin between elements */
+            color: white; /* White text color */
+            cursor: pointer; /* Add cursor pointer */
+        }
+
+        .additional-elements p:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Style container */
+        .container-wrapper {
+            display: flex;
+            justify-content: space-around; /* Distribute containers evenly */
+            padding: 50px 0; /* Add padding */
+        }
+
+        .container {
+            flex: 0 1 30%; /* Flex-grow, flex-shrink, flex-basis */
+            text-align: center;
+            margin: 0 10px; /* Add margin between containers */
+            transform-style: preserve-3d; /* Preserve 3D transformations */
+            transition: transform 0.5s; /* Add transition for smooth effect */
+            perspective: 1000px; /* Perspective value for 3D effect */
+            background-color: rgba(109, 60, 164, 0.8); /* Semi-transparent background color */
+            border-radius: 8px; /* Add border radius for rounded corners */
+            overflow: hidden; /* Hide overflowing content */
+            position: relative;
+        }
+
+        /* Apply hover effect */
+        .container:hover {
+            transform: rotateX(10deg); /* Rotate the container on hover */
+        }
+
+        /* Style container inner elements */
+        .container img {
+            width: 100px;
+            height: 100px;
+            margin-top: 40px;
+            border-radius: 8px; /* Add border radius for rounded corners */
+        }
+
+        /* Style container title */
+        .container h2 {
+            width: 100%;
+            font-size: 28px;
+            color: #ffffff;
+            padding-top: 30px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: -5px;
+        }
+
+        .container .down-arrow {
+            width: 50px; /* Adjust arrow size as needed */
+            height: 50px; /* Adjust arrow size as needed */
+            fill: white; /* Color of the arrow */
+            display: block; /* Display the arrow properly */
+            margin: 0 auto; /* Center the arrow horizontally */
+            margin-top: 10px; /* Adjust the spacing between text and arrow */
+            transition: transform 0.3s; /* Add transition for smooth rotation */
+            pointer-events: auto;
+        }
+        .container.expanded .down-arrow {
+            transform: rotate(180deg) ; /* Rotate arrow when container is expanded */
+        }
+
+        .container-content {
+            display: none; /* Initially hide container content */
+            overflow: hidden; /* Hide overflow content */
+            transition: height 0.3s; /* Add transition for smooth expansion */
+        }
+
+        .container.expanded .container-content {
+            display: block; /* Show container content when expanded */
+        }
+
+        .container a {
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .header a{
+            text-decoration: none;
+        }
+
+        /* Title and Subtitle styles */
+        .title {
+            text-align: center;
+            font-size: 56px;
+            font-weight: bold;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin-top: -40px;
+        }
+
+        .page-body{
+            background-image: url('../images/indexBG.png'); /* Background image */
+            background-size: cover; /* Cover the entire container */
+            padding: 250px 0;
+        }
+        .footer_section {
+            width: 100%;
+            background-color: #252525;
+            height: auto;
+            padding: 95px 0px;
+            display: flex; /* Use flexbox */
+            justify-content: space-around; /* Distribute items evenly */
+            flex-wrap: wrap; /* Allow items to wrap */
+        }
+
+        .footer_section .container-footer {
+            width: 90%;
+            max-width: 1200px; /* Max width for the container */
+            margin: auto; /* Center the container */
+        }
+
+        .footer_section .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .footer_section .col-lg-3,
+        .footer_section .col-sm-6 {
+            flex: 0 0 calc(25% - 20px); /* Each column occupies 25% of the space with some margin */
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .footer_section .col-lg-3,
+            .footer_section .col-sm-6 {
+                flex: 0 0 calc(50% - 20px); /* Each column occupies 50% of the space with some margin */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer_section .col-lg-3,
+            .footer_section .col-sm-6 {
+                flex: 0 0 calc(100% - 20px); /* Each column occupies 100% of the space with some margin */
+            }
+        }
+
+        .useful_text {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .footer_text {
+            font-size: 14px;
+            color: #ffffff;
+            margin: 0px;
+        }
+
+        .footer_menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer_menu li {
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .footer_menu li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .footer_menu li a:hover {
+            color: #6d3ca4;
+        }
+
+        .footer_section .location_text ul li::marker {
+            color: #ffffff; /* Set the color of the bullet point to white */
+        }
+
+        .footer_section .location_text ul li a {
+            color: #ffffff;
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .footer_section .location_text ul li a:hover {
+            color: #6d3ca4;
+        }
+
+        .copyright_section {
+            width: 100%;
+            float: left;
+            background-color: #ffffff;
+            height: auto;
+        }
+
+        .copyright_text {
+            width: 100%;
+            float: left;
+            font-size: 16px;
+            color: #252525;
+            text-align: center;
+            margin-left: 0px;
+        }
+
+        .copyright_text a {
+            color: #252525;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .icon {
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            position: absolute; /* Change position to absolute */
+            animation: pulse 2s infinite alternate;
+            top: 35%;
+            left: 38%; /* Position from the left */
+            transform: translate(-50%, -50%); /* Center the icon */
+            z-index: 20;
+            transition: all 0.1s ease-out;
+            cursor: pointer;
+        }
+
+        .layers-transition {
+            position: fixed;
+            top:0;
+            left: -0.105vw;
+            display: none;
+            transition: all 0.1s ease-out;
+        }
+
+        .layers-transition.active{
+            position: fixed;
+            display:block;
+            opacity: 100;
+            height: 100vh;
+            width:100vw;
+            transition: all 0.1s ease-out;
+        }
+        
+        /* Shopping cart styles */
+        .shopping-cart {
+            display: flex;
+            align-items: center;
+            margin-right: 20px; /* Adjust margin for spacing */
+        }
+
+        .cart-icon {
+            font-size: 24px; /* Set icon size */
+            color: white; /* White color for icon */
+            cursor: pointer; /* Add cursor pointer */
+            margin-top: 20px;
+        }
+
+        .cart-count {
+            font-size: 18px; /* Set font size */
+            color: white; /* White color for text */
+            margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <!-- Logo and company name -->
+        <div class="logo">
+            <img src="../images/logo.png">
+            <div class="company-name">Delta.Egy</div>
+        </div>
+        <!-- Additional elements -->
+        <div class="additional-elements">
+            <a href="/"><p>Home</p></a>
+            <a href="/"><p>About</p></a>
+            <a href="/"><p>Contact Us</p></a>
+            <div class="shopping-cart">
+                <a href="/cart.html">
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="cart-count" id="cart-count">0</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class = "page-body">
+        <img src="../images/logo.png" class="icon" onclick="onClickIcon()" />
+        <iframe src="https://deltaegy.3dlayers.app" title="deltaegy" class="layers-transition" allowtransparency="true"></iframe>
+    </div>
+    <div class="footer_section layout_padding">
+        <div class="container-footer">
+           <div class="row">
+              <div class="col-lg-3 col-sm-6">
+                 <h3 class="useful_text">About</h3>
+                 <p class="footer_text">Welcome to Delta.egy, a leading provider of cutting-edge 3D printing services based in Cairo, Egypt. At Delta.egy, we are dedicated to transforming ideas into reality through the power of additive manufacturing.</p>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h3 class="useful_text">Navigate</h3>
+                 <div class="footer_menu">
+                    <ul>
+                       <li><a href="/">Home</a></li>
+                       <li><a href="about.html">About Us</a></li>
+                       <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h1 class="useful_text">Social Media</h1>
+                 <div class="footer_menu">
+                    <ul>
+                       <li><a href="https://instagram.com/delta.egy?igshid=MzNlNGNkZWQ4Mg==" target="_blank">Instagram</a></li>
+                       <li><a href="https://www.facebook.com/profile.php?id=100089996525547" target="_blank">Facebook</a></li>
+                       <li><a href="https://wa.me/+201211877907" target="_blank">WhatsApp</a></li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h1 class="useful_text">Contact Us</h1>
+                 <div class="location_text">
+                    <ul>
+                       <li>
+                          <a href="https://www.google.com/maps/place/Delta.Egy,+8th+korayesh+st,+off+Tarablous+st,+off,+Abbas+El-Akkad,+st,+Nasr+City,+Cairo+Governorate+11371/data=!4m2!3m1!1s0x14583f90f89c431b:0xddac41bb64ac6979?utm_source=mstt_1&entry=gps&lucs=47068615,,47068303&coh=179582&g_ep=CAESCTExLjg2LjQwMBgAINeCAyoSNDcwNjg2MTUsLDQ3MDY4MzAzQgJFRw%3D%3D"
+                              target="_blank">
+                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10">Location</span>
+                          </a>
+                      </li>                       
+                      <li>
+                       <a href="tel:++201222513244">
+                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">Call: +20 1222 513 244</span>
+                       </a>
+                     </li>                    
+                     <li>
+                       <a href="mailto:delta.egy.3d@gmail.com">
+                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email: delta.egy.3d@gmail.com</span>
+                       </a>
+                   </li>                    
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="copyright_section">
+        <div class="container-copyright">
+           <p class="copyright_text">2023 All Rights Reserved.</p>
+        </div>
+     </div>
+     <script>
+        const item_picture = document.querySelector('.layers-transition');
+        const icon = document.querySelector('.icon');
+
+        function onClickIcon() {
+            if (item_picture.classList.contains('active')) {
+                item_picture.classList.remove('active');
+                icon.style.display = 'block'; // Show the icon
+            } else {
+                item_picture.classList.add('active');
+                icon.style.display = 'none'; // Hide the icon
+            }
+        }
+    </script>      
+</body>
+</html>
