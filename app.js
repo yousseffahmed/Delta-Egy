@@ -223,7 +223,7 @@ app.post('/submit_order', (req, res) => {
         service: 'outlook',
         auth: {
             user: 'youssef.zakii@outlook.com',
-            pass: '13EBDAEE47work'
+            pass: 'password'
         }
     });
 
