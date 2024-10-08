@@ -39,7 +39,11 @@ const limiter = rateLimit({
 
 // app.use(limiter);
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://solidforms3d.onrender.com',
+    credentials: true
+}));
+
 
 app.use(
     helmet.contentSecurityPolicy({
