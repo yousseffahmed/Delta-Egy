@@ -69,7 +69,7 @@ app.use(session({
     secret: 'yourSecretKey',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: process.env.NODE_ENV === 'production' },
+    cookie: { secure: process.env.NODE_ENV === 'production', sameSite: 'None' },
     store: MongoStore.create({ mongoUrl: mongoURI })
 }));
 
