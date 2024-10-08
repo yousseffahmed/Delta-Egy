@@ -3,148 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://layers.app/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://layers.app/style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Home</title>
     <style>
         body {
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
 
-        /* Center the header title */
         .header {
-            background-color: black; /* Black background color */
-            color: white; /* White text color */
-            padding: 20px 0; /* Add padding */
-            border-bottom: 5px solid #6d3ca4; /* Purple bottom border */
-            display: flex; /* Use flexbox for layout */
-            justify-content: space-between; /* Align items with space between */
-            align-items: center; /* Align items vertically */
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            border-bottom: 2px solid #D35F18;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Logo styles */
         .logo img {
-            width: 100px; /* Set logo width */
-            height: auto; /* Maintain aspect ratio */
-            display: inline-block; /* Make the image inline */
+            width: 100px;
+            height: auto;
+            display: inline-block;
         }
 
-        /* Delta.Egy text styles */
         .company-name {
-            margin-left: 10px; /* Add margin between logo and text */
-            display: inline-block; /* Make the text inline */
+            display: inline-block;
             font-size: 30px;
             font-family: Arial, sans-serif;
-            position: relative; /* Set position relative */
-            top: -40px; /* Move the text 10px upwards */
+            position: relative;
+            top: -35px;
         }
 
-        /* Additional elements styles */
         .additional-elements {
-            display: flex; /* Use flexbox for layout */
+            display: flex;
             margin-right: 10px;
             font-size: 22px;
+            gap: 15px;
         }
 
         .additional-elements p {
-            margin-left: 10px; /* Add margin between elements */
-            color: white; /* White text color */
-            cursor: pointer; /* Add cursor pointer */
+            margin-left: 10px;
+            color: white;
+            cursor: pointer;
         }
 
         .additional-elements p:hover {
-            text-decoration: underline; /* Underline on hover */
+            text-decoration: underline;
         }
 
-        /* Style container */
         .container-wrapper {
             display: flex;
-            justify-content: space-around; /* Distribute containers evenly */
-            padding: 50px 0; /* Add padding */
+            justify-content: space-around;
+            padding: 50px 50px;
         }
 
         .container {
-            flex: 0 1 30%; /* Flex-grow, flex-shrink, flex-basis */
+            flex: 0 1 30%;
             text-align: center;
-            margin: 0 10px; /* Add margin between containers */
-            transform-style: preserve-3d; /* Preserve 3D transformations */
-            transition: transform 0.5s; /* Add transition for smooth effect */
-            perspective: 1000px; /* Perspective value for 3D effect */
-            background-color: rgba(109, 60, 164, 0.8); /* Semi-transparent background color */
-            border-radius: 8px; /* Add border radius for rounded corners */
-            overflow: hidden; /* Hide overflowing content */
+            margin: 0 10px;
+            transform-style: preserve-3d;
+            transition: all 0.5s;
+            perspective: 1000px;
+            background-color: #D35F18;
+            border-radius: 8px;
+            overflow: hidden;
             position: relative;
+            height: 250px;
         }
 
-        /* Apply hover effect */
         .container:hover {
-            transform: rotateX(10deg); /* Rotate the container on hover */
+            transform: rotateX(10deg);
+            height: 350px;
         }
 
-        /* Style container inner elements */
         .container img {
             width: 100px;
             height: 100px;
             margin-top: 40px;
-            border-radius: 8px; /* Add border radius for rounded corners */
+            border-radius: 8px;
+            transition: all 0.5s;
         }
 
-        /* Style container title */
+
+        .container:hover img {
+            margin-top: 20px;
+        }
+
         .container h2 {
             width: 100%;
             font-size: 28px;
-            color: #ffffff;
+            color: #FAF9F6;
             padding-top: 30px;
             text-align: center;
             font-family: Arial, sans-serif;
-            margin-top: -5px;
+            margin-top: -10px;
+            transition: all 0.5s;
+        }
+
+        .container:hover h2 {
+            padding-top: 10px;
         }
 
         .container a {
-            text-decoration: none; /* Remove underline from links */
+            text-decoration: none;
+        }
+
+        .container-description {
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: all 0.5s;
+            color: #FAF9F6;
+            padding: 0 20px;
+            font-size: 18px;
+            text-align: justify;
+            padding-top: 35px;
+        }
+
+        .container:hover .container-description {
+            opacity: 1;
+            height: auto;
+            margin-top: 20px;
         }
 
         .header a{
             text-decoration: none;
         }
 
-        /* Title and Subtitle styles */
         .title {
             text-align: center;
             font-size: 36px;
             font-weight: bold;
-            color: #ffffff;
             font-family: Arial, sans-serif;
+            color: #ffffff;
         }
 
         .subtitle {
             text-align: center;
             font-size: 24px;
             margin-top: 10px;
-            color: #ffffff; /* Dark gray color */
             font-family: Arial, sans-serif;
+            color: #ffffff;
         }
 
         .page-body{
-            background-image: url('../images/indexBG.png'); /* Background image */
-            background-size: cover; /* Cover the entire container */
+            background-image: url("../images/indexBG.png");
+            background-size: cover;
             padding: 100px 0;
         }
+
         .footer_section {
             width: 100%;
             background-color: #252525;
             height: auto;
             padding: 95px 0px;
-            display: flex; /* Use flexbox */
-            justify-content: space-around; /* Distribute items evenly */
-            flex-wrap: wrap; /* Allow items to wrap */
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
         }
 
         .footer_section .container-footer {
             width: 90%;
-            max-width: 1200px; /* Max width for the container */
-            margin: auto; /* Center the container */
+            max-width: 1201px;
+            margin: auto;
         }
 
         .footer_section .row {
@@ -156,21 +180,21 @@
 
         .footer_section .col-lg-3,
         .footer_section .col-sm-6 {
-            flex: 0 0 calc(25% - 20px); /* Each column occupies 25% of the space with some margin */
+            flex: 0 0 calc(25% - 20px);
             margin-bottom: 20px;
         }
 
         @media (max-width: 992px) {
             .footer_section .col-lg-3,
             .footer_section .col-sm-6 {
-                flex: 0 0 calc(50% - 20px); /* Each column occupies 50% of the space with some margin */
+                flex: 0 0 calc(50% - 20px);
             }
         }
 
         @media (max-width: 576px) {
             .footer_section .col-lg-3,
             .footer_section .col-sm-6 {
-                flex: 0 0 calc(100% - 20px); /* Each column occupies 100% of the space with some margin */
+                flex: 0 0 calc(100% - 20px);
             }
         }
 
@@ -203,20 +227,20 @@
         }
 
         .footer_menu li a:hover {
-            color: #6d3ca4;
+            color: #D35F18;
         }
 
         .footer_section .location_text ul li::marker {
-            color: #ffffff; /* Set the color of the bullet point to white */
+            color: #ffffff; 
         }
 
         .footer_section .location_text ul li a {
             color: #ffffff;
-            text-decoration: none; /* Remove underline from links */
+            text-decoration: none; 
         }
 
         .footer_section .location_text ul li a:hover {
-            color: #6d3ca4;
+            color: #D35F18;
         }
 
         .copyright_section {
@@ -239,24 +263,124 @@
             color: #252525;
         }
         
-        /* Shopping cart styles */
         .shopping-cart {
             display: flex;
             align-items: center;
-            margin-right: 20px; /* Adjust margin for spacing */
+            margin-right: 20px;
         }
 
         .cart-icon {
-            font-size: 24px; /* Set icon size */
-            color: white; /* White color for icon */
-            cursor: pointer; /* Add cursor pointer */
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
             margin-top: 20px;
         }
 
         .cart-count {
-            font-size: 18px; /* Set font size */
-            color: white; /* White color for text */
+            font-size: 18px;
+            color: white;
             margin-left: 25px;
+        }
+
+        .fa-store {
+            font-size: 98px;
+            color: #FAF9F6;
+            margin-top: 40px;
+            transition: all 0.5s;
+        }
+
+        .fa-camera{
+            font-size: 98px;
+            color: #FAF9F6;
+            margin-top: 40px;
+            transition: all 0.5s;
+        }
+
+        .mdi--printer-3d-nozzle {
+            display: inline-block;
+            width: 110px;
+            height: 98px;
+            margin-top: 40px;
+            --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M7 2h10v6h2v5h-2.5L13 17h-2l-3.5-4H5V8h2zm3 20H2v-2h8a1 1 0 0 0 1-1v-1h2v1a3 3 0 0 1-3 3'/%3E%3C/svg%3E");
+            background-color: #FAF9F6;
+            -webkit-mask-image: var(--svg);
+            mask-image: var(--svg);
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+        }
+
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 24px;
+                margin-left: -20px;
+            }
+
+            .additional-elements {
+                display: none;
+            }
+
+            .container-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                flex: 1 1 90%;
+                margin-bottom: 20px;
+                width: 240px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: white;
+                margin-right: 10px;
+            }
+
+            .dropdown-menu {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #333;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                display: none;
+            }
+
+            .dropdown-menu a {
+                color: white;
+                text-decoration: none;
+                padding: 10px;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #444;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+
+            .dropdown-menu{
+                display: none;
+            }
         }
     </style>
 </head>
@@ -266,16 +390,16 @@
         <!-- Logo and company name -->
         <div class="logo">
             <img src="../images/logo.png">
-            <div class="company-name">Delta.Egy</div>
+            <div class="company-name">SolidForms</div>
         </div>
         <!-- Additional elements -->
         <div class="additional-elements">
             <a href="/"><p>Home</p></a>
-            <a href="/"><p>About</p></a>
-            <a href="/"><p>Contact Us</p></a>
+            <a href="/about"><p>About</p></a>
+            <a href="/contact"><p>Contact Us</p></a>
             <!-- Shopping cart -->
             <div class="shopping-cart">
-                <a href="/cart.html">
+                <a href="/cart">
                     <div class="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
@@ -283,36 +407,62 @@
                 </a>
             </div>
         </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/cart">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="cart-count" id="cart-count-mobile">0</div>
+                </div>
+            </a>
+        </div>
     </div>
     <div class = "page-body">
         <!-- Title and Subtitle -->
         <div class = "title-container">
-            <div class="title">Your One Stop Gift Shop</div>
-            <div class="subtitle">3D Printing Service</div>
+            <div class="title">3D PRINTING SERVICES</div>
+            <div class="subtitle">JUST ONE CLICK AWAY</div>
         </div>
         <div class="container-wrapper">
             <!-- Main Container 1 -->
             <div class="container">
-                <a href="print.html">
-                    <img src="../images/print.png" alt="Image 1" allowtransparency="true">
+                <a href="https://solidforms.3dlayers.app">
+                    <!-- <img src="../images/print.png" alt="Image 1" allowtransparency="true"> -->
+                    <span class="mdi--printer-3d-nozzle"></span>
                     <h2>3D Printing</h2>
                 </a>
+                <div class="container-description">
+                    Transform your ideas into reality with our state-of-the-art 3D printing services. From prototypes to custom designs, we bring your visions to life with precision and quality.
+                </div>
             </div>
         
             <!-- Main container 2 -->
             <div class="container">
-                <a href="english.html">
-                    <img src="../images/store.png" alt="Image 1">
+                <a href="shop">
+                    <!-- <img src="../images/store.png" alt="Image 1"> -->
+                    <i class="fa-solid fa-store"></i>
                     <h2>Gift Shop</h2>
                 </a>
+                <div class="container-description">
+                    Discover unique and personalized gifts in our shop. From 3D printed novelties to custom-made treasures, find the perfect present for your loved ones or treat yourself to something special.
+                </div>
             </div>
         
             <!-- Main container 3 -->
             <div class="container">
-                <a href="light.html">
-                    <img src="../images/photo.png" alt="Image 1">
+                <a href="light">
+                    <!-- <img src="../images/photo.png" alt="Image 1"> -->
+                    <i class ="fa fa-camera"></i>
                     <h2>Light-Up Photos</h2>
                 </a>
+                <div class="container-description">
+                    Illuminate your memories with our stunning light-up photo services. We transform your favorite photos into captivating light displays, creating a unique and atmospheric decor piece for your home or office.
+                </div>
             </div>        
         </div>
     </div>
@@ -321,15 +471,15 @@
            <div class="row">
               <div class="col-lg-3 col-sm-6">
                  <h3 class="useful_text">About</h3>
-                 <p class="footer_text">Welcome to Delta.egy, a leading provider of cutting-edge 3D printing services based in Cairo, Egypt. At Delta.egy, we are dedicated to transforming ideas into reality through the power of additive manufacturing.</p>
+                 <p class="footer_text">Welcome to SolidForms, a leading provider of cutting-edge 3D printing services based in Cairo, Egypt. At SolidForms, we are dedicated to transforming ideas into reality through the power of additive manufacturing.</p>
               </div>
               <div class="col-lg-3 col-sm-6">
                  <h3 class="useful_text">Navigate</h3>
                  <div class="footer_menu">
                     <ul>
                        <li><a href="/">Home</a></li>
-                       <li><a href="about.html">About Us</a></li>
-                       <li><a href="contact.html">Contact Us</a></li>
+                       <li><a href="about">About Us</a></li>
+                       <li><a href="contact">Contact Us</a></li>
                     </ul>
                  </div>
               </div>
@@ -337,9 +487,9 @@
                  <h1 class="useful_text">Social Media</h1>
                  <div class="footer_menu">
                     <ul>
-                       <li><a href="https://instagram.com/delta.egy?igshid=MzNlNGNkZWQ4Mg==" target="_blank">Instagram</a></li>
-                       <li><a href="https://www.facebook.com/profile.php?id=100089996525547" target="_blank">Facebook</a></li>
-                       <li><a href="https://wa.me/+201211877907" target="_blank">WhatsApp</a></li>
+                       <li><a href="https://www.instagram.com/solidforms.eg?igsh=MTc2bDhud3l6anJoaw==" target="_blank">Instagram</a></li>
+                       <li><a href="https://www.tiktok.com/@solidforms.eg?_t=8q74gve3own&_r=1" target="_blank">Tiktok</a></li>
+                       <li><a href="https://wa.me/+201222513244" target="_blank">WhatsApp</a></li>
                     </ul>
                  </div>
               </div>
@@ -348,21 +498,21 @@
                  <div class="location_text">
                     <ul>
                        <li>
-                          <a href="https://www.google.com/maps/place/Delta.Egy,+8th+korayesh+st,+off+Tarablous+st,+off,+Abbas+El-Akkad,+st,+Nasr+City,+Cairo+Governorate+11371/data=!4m2!3m1!1s0x14583f90f89c431b:0xddac41bb64ac6979?utm_source=mstt_1&entry=gps&lucs=47068615,,47068303&coh=179582&g_ep=CAESCTExLjg2LjQwMBgAINeCAyoSNDcwNjg2MTUsLDQ3MDY4MzAzQgJFRw%3D%3D"
+                          <a href="https://maps.app.goo.gl/TuUR5Y7rJQ5ozEvY7"
                               target="_blank">
-                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10">Location</span>
+                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">Location</span>
                           </a>
                       </li>                       
                       <li>
                        <a href="tel:++201222513244">
-                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">Call: +20 1222 513 244</span>
+                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">+20 1222 513 244</span>
                        </a>
                      </li>                    
                      <li>
-                       <a href="mailto:delta.egy.3d@gmail.com">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email: delta.egy.3d@gmail.com</span>
+                       <a href="mailto:solidforms3d@gmail.com">
+                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">solidforms3d@gmail.com</span>
                        </a>
-                   </li>                    
+                    </li>                    
                     </ul>
                  </div>
               </div>
@@ -371,31 +521,9 @@
      </div>
      <div class="copyright_section">
         <div class="container-copyright">
-           <p class="copyright_text">2023 All Rights Reserved.</p>
+           <p class="copyright_text">© 2024 SolidForms - All Rights Reserved</p>
         </div>
      </div>
-     <script>
-        const item_picture = document.querySelector('.layers-transition')
-        function onClickIcon() {
-            if (item_picture.classList.value === "layers-transition") {
-                item_picture.classList.add('active')
-            } else {
-                item_picture.classList.remove('active')
-            }
-
-        }
-        // Fetch the cart count and update the DOM
-        function updateCartCount() {
-            fetch('/cart/count') // Assuming this endpoint returns the cart count
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('cart-count').textContent = data.count;
-                })
-                .catch(error => console.error('Error updating cart count:', error));
-        }
-
-        // Call updateCartCount() when the page loads
-        window.addEventListener('load', updateCartCount);
-    </script>      
+     <script src="../scripts/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Home</title>
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            border-bottom: 2px solid #D35F18;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+            display: inline-block;
+        }
+
+        .company-name {
+            
+            display: inline-block;
+            font-size: 30px;
+            font-family: Arial, sans-serif;
+            position: relative;
+            top: -35px;
+        }
+
+        .additional-elements {
+            display: flex;
+            margin-right: 10px;
+            font-size: 22px;
+            gap: 15px;
+        }
+
+        .additional-elements p {
+            margin-left: 10px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .additional-elements p:hover {
+            text-decoration: underline;
+        }
+
+        .container-wrapper {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 50px;
+        }
+
+        .container {
+            flex: 0 1 30%;
+            text-align: center;
+            margin: 0 10px;
+            transform-style: preserve-3d;
+            transition: all 0.5s;
+            perspective: 1000px;
+            background-color: #D35F18;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+        }
+
+        .container:hover {
+            transform: rotateX(10deg);
+            height: 350px;
+        }
+
+        .container img {
+            width: 100px;
+            height: 100px;
+            margin-top: 40px;
+            border-radius: 8px;
+            transition: all 0.5s;
+        }
+
+
+        .container:hover img {
+            margin-top: 20px;
+        }
+
+        .container h2 {
+            width: 100%;
+            font-size: 28px;
+            color: #FAF9F6;
+            padding-top: 30px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: -10px;
+            transition: all 0.5s;
+        }
+
+        .header a{
+            text-decoration: none;
+        }
+
+        .footer_section {
+            width: 100%;
+            background-color: #252525;
+            height: auto;
+            padding: 95px 0px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .footer_section .container-footer {
+            width: 90%;
+            max-width: 1201px;
+            margin: auto;
+        }
+
+        .footer_section .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .footer_section .col-lg-3,
+        .footer_section .col-sm-6 {
+            flex: 0 0 calc(25% - 20px);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .footer_section .col-lg-3,
+            .footer_section .col-sm-6 {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer_section .col-lg-3,
+            .footer_section .col-sm-6 {
+                flex: 0 0 calc(100% - 20px);
+            }
+        }
+
+        .useful_text {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .footer_text {
+            font-size: 14px;
+            color: #ffffff;
+            margin: 0px;
+        }
+
+        .footer_menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer_menu li {
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .footer_menu li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .footer_menu li a:hover {
+            color: #D35F18;
+        }
+
+        .footer_section .location_text ul li::marker {
+            color: #ffffff;
+        }
+
+        .footer_section .location_text ul li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .footer_section .location_text ul li a:hover {
+            color: #D35F18;
+        }
+
+        .copyright_section {
+            width: 100%;
+            float: left;
+            background-color: #ffffff;
+            height: auto;
+        }
+
+        .copyright_text {
+            width: 100%;
+            float: left;
+            font-size: 16px;
+            color: #252525;
+            text-align: center;
+            margin-left: 0px;
+        }
+
+        .copyright_text a {
+            color: #252525;
+        }
+        
+        .shopping-cart {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .cart-icon {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .cart-count {
+            font-size: 18px;
+            color: white;
+            margin-left: 25px;
+        }
+
+        .header-body{
+            padding: 75px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            color: #D35F18;
+        }
+
+        .nutrition-body {
+            padding: 50px;
+            background-color: #f2f2f2;
+            margin: 0 auto;
+            padding-right: 150px;
+            padding-left: 150px;
+        }
+
+        .nutrition-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .plan-text {
+            color: #D35F18;
+        }
+
+        .nutrition-content-text {
+            flex: 1;
+            padding-right: 20px;
+            font-size: 20px;
+            margin-right: 100px;
+            text-align: justify;
+        }
+
+        .nutrition-body img {
+            flex: 1;
+            max-width: 27%;
+            height: 275px;
+            border-radius: 5px;
+        }
+
+        .gym-body {
+            padding: 50px;
+            margin: 0 auto;
+            padding-right: 150px;
+            padding-left: 150px;
+        }
+
+        .gym-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gym-content-text {
+            flex: 1;
+            padding-right: 20px;
+            font-size: 20px;
+            text-align: justify;
+        }
+
+        .gym-body img {
+            flex: 1;
+            max-width: 25%;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 100px;
+        }
+
+        .open-hours-list {
+            list-style-type: none;
+            padding: 0;
+            font-size: 25px;
+        }
+
+        .open-hours-list li {
+            margin-bottom: 10px; /* Adjust as needed */
+        }
+
+        .open-hours-list .day {
+            font-weight: bold;
+            display: inline-block;
+            width: 100px; /* Adjust width for alignment */
+        }
+
+        .open-hours-list .hours {
+            display: inline-block;
+            margin-left: 60px; /* Adjust space between day and hours */
+        }
+
+        @media (max-width: 768px) {
+        .company-name {
+            font-size: 24px;
+            margin-left: -20px;
+        }
+
+        .additional-elements {
+            display: none;
+        }
+
+        .container-wrapper {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            flex: 1 1 90%;
+            margin-bottom: 20px;
+            width: 200px;
+        }
+
+        .title {
+            font-size: 24px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+        }
+
+        .header-body {
+            padding: 20px;
+        }
+
+        .nutrition-body,
+        .gym-body {
+            padding: 20px;
+            /* margin: 10px auto; */
+        }
+
+        .nutrition-content-text,
+        .gym-content-text {
+            font-size: 16px;
+            padding-right: 0px;
+            margin-right: 0px;
+        }
+
+        .nutrition-body img,
+        .gym-body img {
+            width: auto;
+            height: 150px;
+            padding-left: 40px;
+            /* margin-right: 1000px; */
+        }
+
+        .gym-body img{
+            padding-right: 0px;
+            padding-left: 0px;
+            margin-left: 10px;
+            margin-right: 25px;
+        }
+
+        .open-hours-list {
+            font-size: 16px;
+        }
+
+        .hamburger {
+            display: block;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .dropdown-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .dropdown-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #444;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .hamburger {
+            display: none;
+        }
+
+        .dropdown-menu {
+            display: none;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <!-- Logo and company name -->
+        <div class="logo">
+            <img src="../images/logo.png">
+            <div class="company-name">SolidForms</div>
+        </div>
+        <!-- Additional elements -->
+        <div class="additional-elements">
+            <a href="/"><p>Home</p></a>
+            <a href="/about"><p>About</p></a>
+            <a href="/contact"><p>Contact Us</p></a>
+            <!-- Shopping cart -->
+            <div class="shopping-cart">
+                <a href="/cart">
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="cart-count" id="cart-count">0</div>
+                </a>
+            </div>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/cart">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="cart-count" id="cart-count-mobile">0</div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class = "page-body">
+        <div class="header-body">
+            <div class = "title-container">
+                <div class="title">WHAT IS SOLIDFORMS?</div>
+                <div class="subtitle">REVLOUTIONIZING 3D PRINTING</div>
+            </div>
+        </div>
+        <div class="nutrition-body">
+            <div class="title">QUICK <span id="plan-text" class="plan-text">OVERVIEW</span></h3></div>
+            <div class="nutrition-content">
+                <div class="nutrition-content-text">
+                    <p>At SolidForms 3D printing service, we aim to reinvent how 3D printing is perceived in people's minds. Through the use of top-class machines and equipment, we produce an unparalleled level of quality for our customers.<br><br> Our commitment to excellence extends beyond the physical products we create. We prioritize innovation, precision, and customer satisfaction in every project.</p>
+                </div>
+                <img src="../images/overview.png" alt="Nutrition Plan Image">
+            </div>
+        </div>
+        <div class="gym-body">
+            <div class="title">OUR <span id="plan-text" class="plan-text">SERVICES</span></h3></div>
+            <div class="gym-content">
+                <img src="../images/services.png" alt="Gym Program Image">
+                <div class="gym-content-text">
+                    <p>Our services cater to a wide range of industries, including automotive, consumer products, student projects, and customized orders.<br><br> Whether you need a single prototype or mass produced products, our state-of-the-art 3D printers and experienced team are equipped to handle projects of any scale and complexity.</p>
+                </div>
+            </div>
+        </div>
+        <div class="nutrition-body">
+            <div class="title">WHY <span id="plan-text" class="plan-text">3D PRINTING</span></h3></div>
+            <div class="nutrition-content">
+                <div class="nutrition-content-text">
+                    <p>We believe that 3D printing is more than just a manufacturing process. 3D printing is a transformative technology that can revolutionize the production operation.<br><br>3D printing allows the production of 1-off products simplifying the prototyping process, and facilitating the customization of each and every printed item; from color, size, strength, and even carved text. <br><br> At SolidForms, we offer personalized consultations to help you understand how 3D printing can benefit your specific needs.</p>
+                </div>
+                <img src="../images/printing.png" alt="Nutrition Plan Image">
+            </div>
+        </div>
+        <div class="gym-body">
+            <div class="title">CUSTOMER <span id="plan-text" class="plan-text">SUPPORT</span></h3></div>
+            <div class="gym-content">
+                <img src="../images/customerServies.png" alt="Gym Program Image">
+                <div class="gym-content-text">
+                    <p>Don't worry, you will never feel lost. We are always available to answer your questions. Just send us an email, and our team will respond as soon as possible.<br><br>We will always be delighted to hear from you and assist you throughout your journey.</p>
+                </div>
+            </div>
+        </div>
+        <div class="nutrition-body">
+            <div class="title">WORKING <span id="plan-text" class="plan-text">HOURS</span></div>
+            <div class="nutrition-content">
+                <div class="nutrition-content-text">
+                    <ul class="open-hours-list">
+                        <li><span class="day">Sunday</span> <span class="hours">11:00 - 19:00</span></li>
+                        <li><span class="day">Monday</span> <span class="hours">11:00 - 19:00</span></li>
+                        <li><span class="day">Tuesday</span> <span class="hours">11:00 - 19:00</span></li>
+                        <li><span class="day">Wednesday</span> <span class="hours">11:00 - 19:00</span></li>
+                        <li><span class="day">Thursday</span> <span class="hours">11:00 - 19:00</span></li>
+                        <li><span class="day">Friday</span> <span class="hours">OFF</span></li>
+                        <li><span class="day">Saturday</span> <span class="hours">11:00 - 19:00</span></li>
+                    </ul>
+                </div>
+                <!-- <img src="../images/hours.png" alt="Nutrition Plan Image"> -->
+            </div>
+        </div>
+        <div class="footer_section layout_padding">
+            <div class="container-footer">
+               <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                     <h3 class="useful_text">About</h3>
+                     <p class="footer_text">Welcome to SolidForms, a leading provider of cutting-edge 3D printing services based in Cairo, Egypt. At SolidForms, we are dedicated to transforming ideas into reality through the power of additive manufacturing.</p>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                     <h3 class="useful_text">Navigate</h3>
+                     <div class="footer_menu">
+                        <ul>
+                           <li><a href="/">Home</a></li>
+                           <li><a href="about">About Us</a></li>
+                           <li><a href="contact">Contact Us</a></li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                     <h1 class="useful_text">Social Media</h1>
+                     <div class="footer_menu">
+                        <ul>
+                           <li><a href="https://www.instagram.com/solidforms.eg?igsh=MTc2bDhud3l6anJoaw==" target="_blank">Instagram</a></li>
+                           <li><a href="https://www.tiktok.com/@solidforms.eg?_t=8q74gve3own&_r=1" target="_blank">Tiktok</a></li>
+                           <li><a href="https://wa.me/+201222513244" target="_blank">WhatsApp</a></li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                     <h1 class="useful_text">Contact Us</h1>
+                     <div class="location_text">
+                        <ul>
+                           <li>
+                              <a href="https://maps.app.goo.gl/TuUR5Y7rJQ5ozEvY7"
+                                  target="_blank">
+                                  <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">Location</span>
+                              </a>
+                          </li>                       
+                          <li>
+                           <a href="tel:++201222513244">
+                               <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">+20 1222 513 244</span>
+                           </a>
+                         </li>                    
+                         <li>
+                           <a href="mailto:solidforms3d@gmail.com">
+                               <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">solidforms3d@gmail.com</span>
+                           </a>
+                        </li>                    
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+     <div class="copyright_section">
+        <div class="container-copyright">
+            <p class="copyright_text">© 2024 SolidForms - All Rights Reserved</p>
+        </div>
+     </div>
+     <script src="../scripts/about.js"></script>    
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>In Touch</title>
+    <style>
+        body {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            border-bottom: 2px solid #D35F18;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+            display: inline-block;
+        }
+
+        .company-name {
+            display: inline-block;
+            font-size: 30px;
+            font-family: Arial, sans-serif;
+            position: relative;
+            top: -35px;
+        }
+
+        .additional-elements {
+            display: flex;
+            margin-right: 10px;
+            font-size: 22px;
+            gap: 15px;
+        }
+
+        .additional-elements p {
+            margin-left: 10px; 
+            color: white;
+            cursor: pointer;
+        }
+
+        .additional-elements p:hover {
+            text-decoration: underline;
+        }
+
+        .header a{
+            text-decoration: none;
+        }
+
+        .page-body{
+            padding: 100px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer_section {
+            width: 100%;
+            background-color: #252525;
+            height: auto;
+            padding: 95px 0px;
+            display: flex; /* Use flexbox */
+            justify-content: space-around; /* Distribute items evenly */
+            flex-wrap: wrap; /* Allow items to wrap */
+        }
+
+        .footer_section .container-footer {
+            width: 90%;
+            max-width: 1201px; /* Max width for the container */
+            margin: auto; /* Center the container */
+        }
+
+        .footer_section .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .footer_section .col-lg-3,
+        .footer_section .col-sm-6 {
+            flex: 0 0 calc(25% - 20px); /* Each column occupies 25% of the space with some margin */
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .footer_section .col-lg-3,
+            .footer_section .col-sm-6 {
+                flex: 0 0 calc(50% - 20px); /* Each column occupies 50% of the space with some margin */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer_section .col-lg-3,
+            .footer_section .col-sm-6 {
+                flex: 0 0 calc(100% - 20px); /* Each column occupies 100% of the space with some margin */
+            }
+        }
+
+        .useful_text {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .footer_text {
+            font-size: 14px;
+            color: #ffffff;
+            margin: 0px;
+        }
+
+        .footer_menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer_menu li {
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .footer_menu li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .footer_menu li a:hover {
+            color: #D35F18;
+        }
+
+        .footer_section .location_text ul li::marker {
+            color: #ffffff; /* Set the color of the bullet point to white */
+        }
+
+        .footer_section .location_text ul li a {
+            color: #ffffff;
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .footer_section .location_text ul li a:hover {
+            color: #D35F18;
+        }
+
+        .copyright_section {
+            width: 100%;
+            float: left;
+            background-color: #ffffff;
+            height: auto;
+        }
+
+        .copyright_text {
+            width: 100%;
+            float: left;
+            font-size: 16px;
+            color: #252525;
+            text-align: center;
+            margin-left: 0px;
+        }
+
+        .copyright_text a {
+            color: #252525;
+        }
+
+        /* Shopping cart styles */
+        .shopping-cart {
+            display: flex;
+            align-items: center;
+            margin-right: 20px; /* Adjust margin for spacing */
+        }
+
+        .cart-icon {
+            font-size: 24px; /* Set icon size */
+            color: white; /* White color for icon */
+            cursor: pointer; /* Add cursor pointer */
+            margin-top: 20px;
+        }
+
+        .cart-count {
+            font-size: 18px; /* Set font size */
+            color: white; /* White color for text */
+            margin-left: 25px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container-thanks {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            padding-bottom: 140px;
+            border-radius: 10px;
+        }
+
+        .container-thanks h1 {
+            color: #D35F18;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .container-thanks p {
+            color: #333;
+            font-size: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 24px;
+                margin-left: -20px;
+            }
+
+            .additional-elements {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: white;
+                margin-right: 10px;
+            }
+
+            .dropdown-menu {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #333;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                display: none;
+            }
+
+            .dropdown-menu a {
+                color: white;
+                text-decoration: none;
+                padding: 10px;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #444;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+
+            .dropdown-menu{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <!-- Logo and company name -->
+        <div class="logo">
+            <img src="../images/logo.png">
+            <div class="company-name">SolidForms</div>
+        </div>
+        <!-- Additional elements -->
+        <div class="additional-elements">
+            <a href="/"><p>Home</p></a>
+            <a href="/about"><p>About</p></a>
+            <a href="/contact"><p>Contact Us</p></a>
+            <!-- Shopping cart -->
+            <div class="shopping-cart">
+                <a href="/cart">
+                    <div class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="cart-count" id="cart-count">0</div>
+                </a>
+            </div>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/cart">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="cart-count" id="cart-count-mobile">0</div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="container-thanks">
+    <h1>Thanks for choosing SolidForms!</h1>
+        <p>Our team will look into your problem.</p>
+        <p>We will be in touch with you as soon as possible!</p>
+    </div>
+    <div class="footer_section layout_padding">
+        <div class="container-footer">
+           <div class="row">
+              <div class="col-lg-3 col-sm-6">
+                 <h3 class="useful_text">About</h3>
+                 <p class="footer_text">Welcome to SolidForms, a leading provider of cutting-edge 3D printing services based in Cairo, Egypt. At SolidForms, we are dedicated to transforming ideas into reality through the power of additive manufacturing.</p>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h3 class="useful_text">Navigate</h3>
+                 <div class="footer_menu">
+                    <ul>
+                       <li><a href="/">Home</a></li>
+                       <li><a href="about">About Us</a></li>
+                       <li><a href="contact">Contact Us</a></li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h1 class="useful_text">Social Media</h1>
+                 <div class="footer_menu">
+                    <ul>
+                       <li><a href="https://www.instagram.com/solidforms.eg?igsh=MTc2bDhud3l6anJoaw==" target="_blank">Instagram</a></li>
+                       <li><a href="https://www.tiktok.com/@solidforms.eg?_t=8q74gve3own&_r=1" target="_blank">Tiktok</a></li>
+                       <li><a href="https://wa.me/+201222513244" target="_blank">WhatsApp</a></li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h1 class="useful_text">Contact Us</h1>
+                 <div class="location_text">
+                    <ul>
+                       <li>
+                          <a href="https://maps.app.goo.gl/TuUR5Y7rJQ5ozEvY7"
+                              target="_blank">
+                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">Location</span>
+                          </a>
+                      </li>                       
+                      <li>
+                       <a href="tel:++201222513244">
+                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">+20 1222 513 244</span>
+                       </a>
+                     </li>                    
+                     <li>
+                       <a href="mailto:solidforms3d@gmail.com">
+                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">solidforms3d@gmail.com</span>
+                       </a>
+                    </li>                    
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="copyright_section">
+        <div class="container-copyright">
+            <p class="copyright_text">© 2024 SolidForms - All Rights Reserved</p>
+        </div>
+    </div>
+    <script src="../scripts/intouch.js"></script>    
+</body>
+</html>

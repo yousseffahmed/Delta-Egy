@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Contact Us</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content=""> 
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- owl stylesheets --> 
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            border-bottom: 2px solid #D35F18;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+            display: inline-block;
+        }
+
+        .company-name {
+            display: inline-block;
+            font-size: 30px;
+            font-family: Arial, sans-serif;
+            position: relative;
+            top: -35px;
+        }
+
+        .additional-elements {
+            display: flex;
+            margin-right: 10px;
+            font-size: 22px;
+            gap: 15px;
+        }
+
+        .additional-elements p {
+            margin-left: 10px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .additional-elements p:hover {
+            text-decoration: underline;
+        }
+
+        .header a{
+            text-decoration: none;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 10px;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        
+        .footer_section {
+            width: 100%;
+            background-color: #252525;
+            height: auto;
+            padding: 95px 0px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .footer_section .container-footer {
+            width: 90%;
+            max-width: 1201px;
+            margin: auto;
+        }
+
+        .footer_section .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .footer_section .col-lg-3,
+        .footer_section .col-sm-6 {
+            flex: 0 0 calc(25% - 20px);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .footer_section .col-lg-3,
+            .footer_section .col-sm-6 {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer_section .col-lg-3,
+            .footer_section .col-sm-6 {
+                flex: 0 0 calc(100% - 20px);
+            }
+        }
+
+        .useful_text {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .footer_text {
+            font-size: 14px;
+            color: #ffffff;
+            margin: 0px;
+        }
+
+        .footer_menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer_menu li {
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .footer_menu li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .footer_menu li a:hover {
+            color: #D35F18;
+        }
+
+        .footer_section .location_text ul li::marker {
+            color: #ffffff; /* Set the color of the bullet point to white */
+        }
+
+        .footer_section .location_text ul li a {
+            color: #ffffff;
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .footer_section .location_text ul li a:hover {
+            color: #D35F18;
+        }
+
+        .copyright_section {
+            width: 100%;
+            float: left;
+            background-color: #ffffff;
+            height: auto;
+        }
+
+        .copyright_text {
+            width: 100%;
+            float: left;
+            font-size: 16px;
+            color: #252525;
+            text-align: center;
+            margin-left: 0px;
+        }
+
+        .copyright_text a {
+            color: #252525;
+        }
+        
+        /* Shopping cart styles */
+        .shopping-cart {
+            display: flex;
+            align-items: center;
+            margin-right: 20px; /* Adjust margin for spacing */
+        }
+
+        .cart-icon {
+            font-size: 24px; /* Set icon size */
+            color: white; /* White color for icon */
+            cursor: pointer; /* Add cursor pointer */
+            margin-top: 20px;
+        }
+
+        .cart-count {
+            font-size: 18px; /* Set font size */
+            color: white; /* White color for text */
+            margin-left: 25px;
+        }
+
+        .contact_section {
+            width: 100%;
+            float: left;
+        }
+
+        .amet_text {
+            width: 100%;
+            float: left;
+            color: #1e1e1e;
+            font-size: 16px;
+            text-align: center;
+            margin-left: 0px;
+        }
+
+        .contact_section2 {
+            width: 100%;
+            float: left;
+            padding-top: 80px;
+        }
+
+        .mail_section {
+            width: 90%;
+            float: left;
+            padding-left: 50px;
+        }
+
+        .col-md-6 {
+            max-width: 70%;
+            flex: 0 0 50%;
+            padding: 15px;
+        }
+
+        .mail_text_1 {
+            width: 100%;
+            float: left;
+            font-size: 18px;
+            color: #666666;
+            background-color: transparent !important;
+            border-bottom: 1px solid #050000 !important;
+            padding-right: 20px;
+            border: 0px;
+            padding-top: 20px;
+        }
+
+        .massage_text {
+            width: 100%;
+            float: left;
+            font-size: 18px;
+            color: #666666;
+            background-color: transparent !important;
+            border-bottom: 1px solid #050000 !important;
+            padding-right: 20px;
+            border: 0px;
+            height: 70px;
+            padding-top: 30px;
+        }
+
+        .send_bt {
+            width: 170px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            display: flex;
+            float: left;
+        }
+
+        .send_bt button{
+            width: 100%;
+            float: left;
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            background-color: #D35F18;
+            padding: 10px 0px;
+            text-transform: uppercase;
+            border-radius: 30px;
+        }
+
+        .send_bt :hover{
+            cursor: pointer;
+            background-color: #e76f24;
+        }
+
+        .what_taital {
+            width: 100%;
+            float: left;
+            font-size: 34px;
+            color: #060606;
+            padding-top: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .contact_info {
+            margin-top: -100px;
+            border-left: 2px solid #666666
+        }
+
+        .contact_text{
+            padding-left: 15px;
+        }
+
+        .contact_text a{
+            text-decoration: none;
+        }
+
+        .row_contact{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 80px;
+        }
+
+        .contact_info h4 {
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .contact_info p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 24px;
+                margin-left: -20px;
+            }
+
+            .additional-elements {
+                display: none;
+            }
+
+            .container-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                flex: 1 1 90%;
+                margin-bottom: 20px;
+                width: 200px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: white;
+                margin-right: 10px;
+            }
+
+            .dropdown-menu {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #333;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                display: none;
+            }
+
+            .dropdown-menu a {
+                color: white;
+                text-decoration: none;
+                padding: 10px;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #444;
+            }
+
+            .contact_section2 .col-md-6 {
+                max-width: 70%;
+                flex: 0 0 100%;
+                margin-left: -100px;
+            }
+
+            .contact_info{
+                border-left: 0px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+
+            .dropdown-menu{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+  <div class="header">
+    <!-- Logo and company name -->
+    <div class="logo">
+        <img src="../images/logo.png">
+        <div class="company-name">SolidForms</div>
+    </div>
+    <!-- Additional elements -->
+    <div class="additional-elements">
+        <a href="/"><p>Home</p></a>
+        <a href="/about"><p>About</p></a>
+        <a href="/contact"><p>Contact Us</p></a>
+        <!-- Shopping cart -->
+        <div class="shopping-cart">
+            <a href="/cart">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="cart-count" id="cart-count">0</div>
+            </a>
+        </div>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="dropdown-menu" id="dropdown-menu">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact Us</a>
+        <a href="/cart">
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <div class="cart-count" id="cart-count-mobile">0</div>
+            </div>
+        </a>
+    </div>
+  </div>
+  <!-- contact section start -->
+    <div class="contact_section layout_padding">
+        <div class="container-fluid">
+            <h1 class="what_taital">Contact us</h1>
+            <div class="contact_section2">
+                <div class="row_contact">
+                    <div class="col-md-6">
+                        <div class="mail_section">
+                            <form id="contactForm" action="/contact" method="POST">
+                                <input type="text" class="mail_text_1" placeholder="Name" name="name" required>
+                                <input type="email" class="mail_text_1" placeholder="Email" name="email" required>
+                                <input type="text" class="mail_text_1" placeholder="Phone Number" name="number" required>
+                                <textarea class="massage_text" placeholder="Message" rows="5" name="message" required></textarea>
+                                <div class="send_bt">
+                                    <button type="submit">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="contact_info">
+                        <div class="contact_text">
+                            <h2>Contact Information</h2>
+                            <a href="https://maps.app.goo.gl/TuUR5Y7rJQ5ozEvY7">
+                                <p><i class="fas fa-map-marker-alt"></i> 22, Abo Hanifa St, ALHay Al 7, Nasr City</p>
+                            </a>
+                            <a href="tel:++201222513244">
+                                <p><i class="fas fa-phone"></i> +20 1222 513 244</p>
+                            </a>
+                            <a href="mailto:solidforms3d@gmail.com">
+                                <p><i class="fas fa-envelope"></i> solidforms3d@gmail.com</p>
+                            </a>
+                            <a href="https://wa.me/+201222513244">
+                                <p><i class="fab fa-whatsapp"></i> WhatsApp</p>
+                            </a>
+                            <p><i class="fas fa-clock"></i> Sun - Sat: 11 AM - 7 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_section layout_padding">
+        <div class="container-footer">
+           <div class="row">
+              <div class="col-lg-3 col-sm-6">
+                 <h3 class="useful_text">About</h3>
+                 <p class="footer_text">Welcome to SolidForms, a leading provider of cutting-edge 3D printing services based in Cairo, Egypt. At SolidForms, we are dedicated to transforming ideas into reality through the power of additive manufacturing.</p>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h3 class="useful_text">Navigate</h3>
+                 <div class="footer_menu">
+                    <ul>
+                       <li><a href="/">Home</a></li>
+                       <li><a href="about">About Us</a></li>
+                       <li><a href="contact">Contact Us</a></li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h1 class="useful_text">Social Media</h1>
+                 <div class="footer_menu">
+                    <ul>
+                       <li><a href="https://www.instagram.com/solidforms.eg?igsh=MTc2bDhud3l6anJoaw==" target="_blank">Instagram</a></li>
+                       <li><a href="https://www.tiktok.com/@solidforms.eg?_t=8q74gve3own&_r=1" target="_blank">Tiktok</a></li>
+                       <li><a href="https://wa.me/+201222513244" target="_blank">WhatsApp</a></li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h1 class="useful_text">Contact Us</h1>
+                 <div class="location_text">
+                    <ul>
+                       <li>
+                          <a href="https://maps.app.goo.gl/TuUR5Y7rJQ5ozEvY7"
+                              target="_blank">
+                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">Location</span>
+                          </a>
+                      </li>                       
+                      <li>
+                       <a href="tel:++201222513244">
+                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">+20 1222 513 244</span>
+                       </a>
+                     </li>                    
+                     <li>
+                       <a href="mailto:solidforms3d@gmail.com">
+                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">solidforms3d@gmail.com</span>
+                       </a>
+                    </li>                    
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  <div class="copyright_section">
+    <div class="container-copyright">
+        <p class="copyright_text">© 2024 SolidForms - All Rights Reserved</p>
+    </div>
+  </div>
+  <script src="../scripts/contact.js"></script>        
+</body>
+</html>

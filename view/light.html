@@ -7,53 +7,50 @@
     <title>Light-Up Photos</title>
     <style>
         body {
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
 
-        /* Center the header title */
         .header {
-            background-color: black; /* Black background color */
-            color: white; /* White text color */
-            padding: 20px 0; /* Add padding */
-            border-bottom: 5px solid #6d3ca4; /* Purple bottom border */
-            display: flex; /* Use flexbox for layout */
-            justify-content: space-between; /* Align items with space between */
-            align-items: center; /* Align items vertically */
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            border-bottom: 2px solid #D35F18;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Logo styles */
         .logo img {
-            width: 100px; /* Set logo width */
-            height: auto; /* Maintain aspect ratio */
-            display: inline-block; /* Make the image inline */
+            width: 100px;
+            height: auto;
+            display: inline-block;
         }
 
-        /* Delta.Egy text styles */
         .company-name {
-            margin-left: 10px; /* Add margin between logo and text */
-            display: inline-block; /* Make the text inline */
+            display: inline-block;
             font-size: 30px;
             font-family: Arial, sans-serif;
-            position: relative; /* Set position relative */
-            top: -40px; /* Move the text 10px upwards */
+            position: relative;
+            top: -35px;
         }
 
-        /* Additional elements styles */
         .additional-elements {
-            display: flex; /* Use flexbox for layout */
+            display: flex;
             margin-right: 10px;
             font-size: 22px;
+            gap: 15px;
         }
 
         .additional-elements p {
-            margin-left: 10px; /* Add margin between elements */
-            color: white; /* White text color */
-            cursor: pointer; /* Add cursor pointer */
+            margin-left: 10px;
+            color: white;
+            cursor: pointer;
         }
 
         .additional-elements p:hover {
-            text-decoration: underline; /* Underline on hover */
+            text-decoration: underline;
         }
 
         .header a{
@@ -78,54 +75,117 @@
         }
 
         .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
+        font-size: 17px;
+        position: relative;
+        display: inline-block;
+        width: 5em;
+        height: 2.5em;
+        user-select: none;
         }
 
-        .switch input {
-            display: none;
+        .switch .cb {
+        opacity: 0;
+        width: 0;
+        height: 0;
         }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            border-radius: 34px;
-            transition: 0.4s;
+        .toggle {
+        position: absolute;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        background-color: #373737;
+        border-radius: 0.1em;
+        transition: 0.4s;
+        text-transform: uppercase;
+        font-weight: 700;
+        overflow: hidden;
+        box-shadow: -0.3em 0 0 0 #373737, -0.3em 0.3em 0 0 #373737,
+            0.3em 0 0 0 #373737, 0.3em 0.3em 0 0 #373737, 0 0.3em 0 0 #373737;
         }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            border-radius: 50%;
-            transition: 0.4s;
+        .toggle > .left {
+        position: absolute;
+        display: flex;
+        width: 50%;
+        height: 88%;
+        background-color: #f3f3f3;
+        color: #373737;
+        left: 0;
+        bottom: 0;
+        align-items: center;
+        justify-content: center;
+        transform-origin: right;
+        transform: rotateX(10deg);
+        transform-style: preserve-3d;
+        transition: all 150ms;
         }
 
-        input:checked + .slider {
-            background-color: #560bad;
+        .left::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: rgb(206, 206, 206);
+        transform-origin: center left;
+        transform: rotateY(90deg);
         }
 
-        input:checked + .slider:before {
-            transform: translateX(26px);
+        .left::after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: rgb(112, 112, 112);
+        transform-origin: center bottom;
+        transform: rotateX(90deg);
         }
 
-        .slider.round {
-            border-radius: 34px;
+        .toggle > .right {
+        position: absolute;
+        display: flex;
+        width: 50%;
+        height: 88%;
+        background-color: #f3f3f3;
+        color: rgb(206, 206, 206);
+        right: 1px;
+        bottom: 0;
+        align-items: center;
+        justify-content: center;
+        transform-origin: left;
+        transform: rotateX(10deg) rotateY(-45deg);
+        transform-style: preserve-3d;
+        transition: all 150ms;
         }
 
-        .slider.round:before {
-            border-radius: 50%;
+        .right::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: rgb(206, 206, 206);
+        transform-origin: center right;
+        transform: rotateY(-90deg);
+        }
+
+        .right::after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: rgb(112, 112, 112);
+        transform-origin: center bottom;
+        transform: rotateX(90deg);
+        }
+
+        .switch input:checked + .toggle > .left {
+        transform: rotateX(10deg) rotateY(45deg);
+        color: rgb(206, 206, 206);
+        }
+
+        .switch input:checked + .toggle > .right {
+        transform: rotateX(10deg) rotateY(0deg);
+        color: #487bdb;
         }
 
         .page-body{
@@ -135,7 +195,6 @@
             justify-content: center;
         }
 
-        /* Define styles for product boxes */
         .product-box {
             width: calc(45% - 20px); /* Set width of each box with margin included */
             margin: 10px; /* Add margin between boxes */
@@ -156,29 +215,29 @@
             height: 50px;
         }
 
-        /* Hover effect */
         .product-box:hover {
-            transform: translateY(-5px); /* Move box up on hover */
+            transform: translateY(-5px);
         }
 
-        /* Heading style */
         .product-box h2 {
             margin-top: 0; /* Remove default margin */
             font-size: 20px; /* Font size */
             color: #333; /* Text color */
         }
 
-        /* Description style */
         .product-box p {
             margin-bottom: 10px; /* Add margin at bottom */
             font-size: 16px; /* Font size */
             color: #666; /* Text color */
         }
 
-        /* Media query for smaller screens */
         @media (max-width: 768px) {
             .product-box {
                 width: 100%; /* Set full width for smaller screens */
+            }
+            
+            .additional-elements {
+                gap: 0; /* Remove gap between elements */
             }
         }
 
@@ -194,7 +253,7 @@
 
         .footer_section .container-footer {
             width: 90%;
-            max-width: 1200px; /* Max width for the container */
+            max-width: 1201px; /* Max width for the container */
             margin: auto; /* Center the container */
         }
 
@@ -254,7 +313,7 @@
         }
 
         .footer_menu li a:hover {
-            color: #6d3ca4;
+            color: #D35F18;
         }
 
         .footer_section .location_text ul li::marker {
@@ -267,7 +326,7 @@
         }
 
         .footer_section .location_text ul li a:hover {
-            color: #6d3ca4;
+            color: #D35F18;
         }
 
         .copyright_section {
@@ -292,7 +351,7 @@
 
         .size-container-small{
             margin-top: 15px;
-            margin-right: 100px;
+            margin-right: 109px;
         }
       
         .size-container-medium{
@@ -303,7 +362,6 @@
             margin-right: 24px;
         }
 
-        /* Title and Subtitle styles */
         .title-container{
             margin-top: 50px;
             margin-bottom: -40px;
@@ -323,6 +381,13 @@
             font-family: Arial, sans-serif;
         }
 
+        .note{
+            text-align: center;
+            font-size: 12px;
+            margin-top: 10px;
+            color: red;
+        }
+
         .include-stand{
             margin-right: 172px;
             margin-top: 15px;
@@ -334,24 +399,113 @@
             margin-top: 15px;
         }
 
-        /* Shopping cart styles */
         .shopping-cart {
             display: flex;
             align-items: center;
-            margin-right: 20px; /* Adjust margin for spacing */
+            margin-right: 20px;
         }
 
         .cart-icon {
-            font-size: 24px; /* Set icon size */
-            color: white; /* White color for icon */
-            cursor: pointer; /* Add cursor pointer */
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
             margin-top: 20px;
         }
 
         .cart-count {
-            font-size: 18px; /* Set font size */
-            color: white; /* White color for text */
+            font-size: 18px;
+            color: white;
             margin-left: 25px;
+        }
+
+        .image_wrapper img{
+            width: 400px;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 24px;
+                margin-left: -20px;
+            }
+
+            .additional-elements {
+                display: none;
+            }
+
+            .container-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                flex: 1 1 90%;
+                margin-bottom: 20px;
+                width: 200px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .subtitle {
+                font-size: 20px;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: white;
+                margin-right: 10px;
+            }
+
+            .dropdown-menu {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #333;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                display: none;
+            }
+
+            .dropdown-menu a {
+                color: white;
+                text-decoration: none;
+                padding: 10px;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #444;
+            }
+            
+            .product-box{
+                margin: 0;
+            }
+
+            .page-body{
+                gap: 20px;
+            }
+
+            .image_wrapper img{
+                width: 220px;
+                height: auto;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+
+            .dropdown-menu{
+                display: none;
+            }
         }
     </style>
 </head>
@@ -361,22 +515,36 @@
         <!-- Logo and company name -->
         <div class="logo">
             <img src="../images/logo.png">
-            <div class="company-name">Delta.Egy</div>
+            <div class="company-name">SolidForms</div>
         </div>
         <!-- Additional elements -->
         <div class="additional-elements">
             <a href="/"><p>Home</p></a>
-            <a href="/"><p>About</p></a>
-            <a href="/"><p>Contact Us</p></a>
+            <a href="/about"><p>About</p></a>
+            <a href="/contact"><p>Contact Us</p></a>
             <!-- Shopping cart -->
             <div class="shopping-cart">
-                <a href="/cart.html">
+                <a href="/cart">
                     <div class="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <div class="cart-count" id="cart-count">0</div>
                 </a>
             </div>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/cart">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="cart-count" id="cart-count-mobile">0</div>
+                </div>
+            </a>
         </div>
     </div>    
     <div class="light_section layout_padding">
@@ -386,24 +554,28 @@
           </div>
           <div class="switch_wrapper">
             <label class="switch">
-              <input type="checkbox" id="switch_toggle">
-              <span class="slider"></span>
-            </label>
+                <input class="cb" type="checkbox" id="switch_toggle" />
+                <span class="toggle">
+                  <span class="left">off</span>
+                  <span class="right">on</span>
+                </span>
+              </label>
           </div>
         </div>
     </div>
     <div class = "title-container">
-        <div class="title">Delta.Egy Light Up Photos</div>
+        <div class="title">SolidForms Light Up Photos</div>
         <div class="subtitle">Select Your Preference </div>
+        <div class ="note">Note: All dimensions are calculated based on the longest side of the uploaded picture</div>
     </div>  
     <div class = "page-body">
         <!-- Product boxes -->              
         <div class="product-box">
             <div class="product_img">
-                <img src="../images/key.png" alt="Image 1">
+                <img src="../images/flat.png" alt="Image 1">
             </div>
             <h2>Flat Frame</h2>
-            <input type="file" id="photo-upload-FLAT">
+            <input type="file" id="photo-upload-FLAT" accept="image/*">
             <div class = "size-container-small">
                 Size: 
                 &nbsp;
@@ -440,18 +612,21 @@
                     <option value="3">3</option>
                 </select>
             </div>
-            <label id="priceFlat" for="price">Price: 80</label>
-            <button id="add-to-cart-btn-FLAT" onclick="addToCartFlat()" style="display: none; background-color: #560bad; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px;">Add to Cart</button>
+            <div>
+                <label id="priceFlat" for="price">Price: 80</label>
+                LE
+            </div>
+            <button id="add-to-cart-btn-FLAT" onclick="addToCartFlat()" style="display: none; background-color: #D35F18; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px;">Add to Cart</button>
         </div> 
         <div class="product-box">
             <div class="product_img">
-                <img src="../images/key.png" alt="Image 1">
+                <img src="../images/curved.png" alt="Image 1">
             </div>
             <h2>Curved Frame</h2>
-            <input type="file" id="photo-upload-curved">
+            <input type="file" id="photo-upload-curved" accept="image/*">
             <div class = "size-container-small">
                 Size: 
-                &nbsp;
+                &nbsp; 
                 &nbsp;
                 &nbsp;
                 &nbsp;
@@ -474,15 +649,18 @@
                     <option value="3">3</option>
                 </select>
             </div>
-            <label id="priceCurved" for="price">Price: 80</label>
-            <button id="add-to-cart-btn-curved" onclick="addToCartCurved()" style="display: none; background-color: #560bad; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px;">Add to Cart</button>
+            <div>
+                <label id="priceCurved" for="price">Price: 80</label>
+                LE
+            </div>
+            <button id="add-to-cart-btn-curved" onclick="addToCartCurved()" style="display: none; background-color: #D35F18; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px;">Add to Cart</button>
         </div> 
         <div class="product-box">
             <div class="product_img">
                 <img src="../images/key.png" alt="Image 1">
             </div>
             <h2>Keychain</h2>
-            <input type="file" id="photo-upload-KC">
+            <input type="file" id="photo-upload-KC" accept="image/*">
             <div class = "quantity">
                 <label for="quantity">Quantity:</label>
                 <select id="quantityKC" name="quantity" style="margin-left: 50px;">
@@ -491,16 +669,18 @@
                     <option value="3">3</option>
                 </select>
             </div>
-            <label id="priceKC" for="price">Price: 80</label>
-            <button id="add-to-cart-btn-KC" onclick="addToCartKey()" style="display: none; background-color: #560bad; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px;">Add to Cart</button>
+            <div>
+                <label id="priceKC" for="price">Price: 80</label>
+                LE
+            </div>
+            <button id="add-to-cart-btn-KC" onclick="addToCartKey()" style="display: none; background-color: #D35F18; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px;">Add to Cart</button>
         </div>          
         <div class="product-box">
             <div class="product_img">
-                <img src="../images/key.png" alt="Image 1">
+                <img src="../images/heart.png" alt="Image 1">
             </div>
             <h2>Heart Frame</h2>
             <p>Coming Soon!</p>
-            <!-- Additional information about the product -->
         </div>
     </div>
     <div class="footer_section layout_padding">
@@ -508,15 +688,15 @@
            <div class="row">
               <div class="col-lg-3 col-sm-6">
                  <h3 class="useful_text">About</h3>
-                 <p class="footer_text">Welcome to Delta.egy, a leading provider of cutting-edge 3D printing services based in Cairo, Egypt. At Delta.egy, we are dedicated to transforming ideas into reality through the power of additive manufacturing.</p>
+                 <p class="footer_text">Welcome to SolidForms, a leading provider of cutting-edge 3D printing services based in Cairo, Egypt. At SolidForms, we are dedicated to transforming ideas into reality through the power of additive manufacturing.</p>
               </div>
               <div class="col-lg-3 col-sm-6">
                  <h3 class="useful_text">Navigate</h3>
                  <div class="footer_menu">
                     <ul>
                        <li><a href="/">Home</a></li>
-                       <li><a href="about.html">About Us</a></li>
-                       <li><a href="contact.html">Contact Us</a></li>
+                       <li><a href="about">About Us</a></li>
+                       <li><a href="contact">Contact Us</a></li>
                     </ul>
                  </div>
               </div>
@@ -524,9 +704,9 @@
                  <h1 class="useful_text">Social Media</h1>
                  <div class="footer_menu">
                     <ul>
-                       <li><a href="https://instagram.com/delta.egy?igshid=MzNlNGNkZWQ4Mg==" target="_blank">Instagram</a></li>
-                       <li><a href="https://www.facebook.com/profile.php?id=100089996525547" target="_blank">Facebook</a></li>
-                       <li><a href="https://wa.me/+201211877907" target="_blank">WhatsApp</a></li>
+                       <li><a href="https://www.instagram.com/solidforms.eg?igsh=MTc2bDhud3l6anJoaw==" target="_blank">Instagram</a></li>
+                       <li><a href="https://www.tiktok.com/@solidforms.eg?_t=8q74gve3own&_r=1" target="_blank">Tiktok</a></li>
+                       <li><a href="https://wa.me/+201222513244" target="_blank">WhatsApp</a></li>
                     </ul>
                  </div>
               </div>
@@ -535,21 +715,21 @@
                  <div class="location_text">
                     <ul>
                        <li>
-                          <a href="https://www.google.com/maps/place/Delta.Egy,+8th+korayesh+st,+off+Tarablous+st,+off,+Abbas+El-Akkad,+st,+Nasr+City,+Cairo+Governorate+11371/data=!4m2!3m1!1s0x14583f90f89c431b:0xddac41bb64ac6979?utm_source=mstt_1&entry=gps&lucs=47068615,,47068303&coh=179582&g_ep=CAESCTExLjg2LjQwMBgAINeCAyoSNDcwNjg2MTUsLDQ3MDY4MzAzQgJFRw%3D%3D"
+                          <a href="https://maps.app.goo.gl/TuUR5Y7rJQ5ozEvY7"
                               target="_blank">
-                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10">Location</span>
+                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">Location</span>
                           </a>
                       </li>                       
                       <li>
                        <a href="tel:++201222513244">
-                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">Call: +20 1222 513 244</span>
+                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">+20 1222 513 244</span>
                        </a>
                      </li>                    
                      <li>
-                       <a href="mailto:delta.egy.3d@gmail.com">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email: delta.egy.3d@gmail.com</span>
+                       <a href="mailto:solidforms3d@gmail.com">
+                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">solidforms3d@gmail.com</span>
                        </a>
-                   </li>                    
+                    </li>                    
                     </ul>
                  </div>
               </div>
@@ -558,259 +738,22 @@
      </div>
      <div class="copyright_section">
         <div class="container-copyright">
-           <p class="copyright_text">2023 All Rights Reserved.</p>
+            <p class="copyright_text">© 2024 SolidForms - All Rights Reserved</p>
         </div>
      </div>
-     <script>
-        document.getElementById("switch_toggle").addEventListener("change", function() {
-            var lightImage = document.getElementById("light_image");
-            if (this.checked) {
-               lightImage.src = "images/on.png";
-            } else {
-               lightImage.src = "images/off.png";
-            }
-        });
-
-        const photoUploadInputKC = document.getElementById("photo-upload-KC");
-
-        const addToCartButtonKC = document.getElementById("add-to-cart-btn-KC");
-
-        photoUploadInputKC.addEventListener("change", function() {
-            if (this.files && this.files[0]) {
-                addToCartButtonKC.style.display = "block";
-            } else {
-                addToCartButtonKC.style.display = "none";
-            }
-        });
-
-        const photoUploadInputFLAT = document.getElementById("photo-upload-FLAT");
-
-        const addToCartButtonFLAT = document.getElementById("add-to-cart-btn-FLAT");
-
-        photoUploadInputFLAT.addEventListener("change", function() {
-            if (this.files && this.files[0]) {
-                addToCartButtonFLAT.style.display = "block";
-            } else {
-                addToCartButtonFLAT.style.display = "none";
-            }
-        });
-
-        const photoUploadInputCurved = document.getElementById("photo-upload-curved");
-
-        const addToCartButtonCurved = document.getElementById("add-to-cart-btn-curved");
-
-        photoUploadInputCurved.addEventListener("change", function() {
-            if (this.files && this.files[0]) {
-                addToCartButtonCurved.style.display = "block";
-            } else {
-                addToCartButtonCurved.style.display = "none";
-            }
-        });
-
-        const sizeRadioButtons = document.getElementsByName("size-flat");
-        const includeRadioButtons = document.getElementsByName("stand-flat");
-        const priceLabelFLAT = document.querySelector("#priceFlat");
-        const quantitySelectFlat = document.getElementById("quantityFlat");
-
-        function updatePriceFlat() {
-            let basePrice = 0;
-
-            if (sizeRadioButtons[0].checked) {
-                basePrice = 250; // Small
-            } else if (sizeRadioButtons[1].checked) {
-                basePrice = 400; // Medium
-            } else if (sizeRadioButtons[2].checked) {
-                basePrice = 650; // Large
-            }
-
-            if (includeRadioButtons[0].checked && sizeRadioButtons[0].checked) {
-                basePrice += 20; // Additional price for stand
-            } else if (includeRadioButtons[0].checked && sizeRadioButtons[1].checked){
-                basePrice += 30; // Additional price for stand
-            } else if (includeRadioButtons[0].checked && sizeRadioButtons[2].checked){
-                basePrice += 50; // Additional price for stand
-            }
-
-            const quantity = parseInt(quantitySelectFlat.value);
-
-            const totalPrice = basePrice * quantity;
-
-            priceLabelFLAT.textContent = "Price: " + totalPrice;
-        }
-
-        sizeRadioButtons.forEach(function(radioButton) {
-            radioButton.addEventListener("change", updatePriceFlat);
-        });
-
-        includeRadioButtons.forEach(function(radioButton) {
-            radioButton.addEventListener("change", updatePriceFlat);
-        });
-
-        quantitySelectFlat.addEventListener("change", updatePriceFlat);
-
-        const sizeRadioButtonsCurved = document.getElementsByName("size-curved");
-        const priceLabelCurved = document.querySelector("#priceCurved");
-        const quantitySelectCurved = document.getElementById("quantityCurved");
-
-        function updatePriceCurved() {
-            let basePrice = 0;
-
-            if (sizeRadioButtonsCurved[0].checked) {
-                basePrice = 300; // Small
-            } else if (sizeRadioButtonsCurved[1].checked) {
-                basePrice = 450; // Medium
-            } else if (sizeRadioButtonsCurved[2].checked) {
-                basePrice = 700; // Large
-            }
-
-            const quantity = parseInt(quantitySelectCurved.value);
-
-            const totalPrice = basePrice * quantity;
-
-            priceLabelCurved.textContent = "Price: " + totalPrice;
-        }
-
-        sizeRadioButtonsCurved.forEach(function(radioButton) {
-            radioButton.addEventListener("change", updatePriceCurved);
-        });
-
-        quantitySelectCurved.addEventListener("change", updatePriceCurved);
-
-        const quantitySelectKC = document.getElementById("quantityKC");
-        const priceLabelKC = document.querySelector("#priceKC");
-
-        function updatePriceKC() {
-            let basePrice = 80;
-
-            const quantity = parseInt(quantitySelectKC.value);
-
-            const totalPrice = basePrice * quantity;
-
-            priceLabelKC.textContent = "Price: " + totalPrice;
-        }
-
-        quantitySelectKC.addEventListener("change", updatePriceKC);
-
-        updatePriceFlat();
-        updatePriceKC();
-        updatePriceCurved();
-
-        function addToCartFlat() {
-            const uploadedImage = document.getElementById('photo-upload-FLAT').files[0];
-            const name = "Flat Frame"
-            const size = document.querySelector('input[name="size-flat"]:checked').value;
-            const includeStand = document.querySelector('input[name="stand-flat"]:checked').value;
-            const quantity = document.getElementById('quantityFlat').value;
-            const price = document.getElementById('priceFlat').textContent.split(":")[1].trim();
-            const id = generateId();
-
-            const formData = new FormData();
-            formData.append('image', uploadedImage);
-            formData.append('name', name);
-            formData.append('size', size);
-            formData.append('includeStand', includeStand);
-            formData.append('quantity', quantity);
-            formData.append('price', price);
-            formData.append('id', id);
-
-            fetch('/upload-flat', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    location.reload();
-                } else {
-                    console.error('Failed to add item to cart');
-                }
-            })
-            .catch(error => {
-                console.error('Error adding item to cart:', error);
-            });
-        }
-
-        function addToCartCurved() {
-            const uploadedImage = document.getElementById('photo-upload-curved').files[0];
-            const imageName = uploadedImage.name;
-            const imageURL = URL.createObjectURL(uploadedImage);
-            const name = "Curved Frame"
-            const size = document.querySelector('input[name="size-curved"]:checked').value;
-            const quantity = document.getElementById('quantityCurved').value;
-            const price = document.getElementById('priceCurved').textContent.split(":")[1].trim();
-            const id = generateId();
-
-            const formData = new FormData();
-            formData.append('image', uploadedImage);
-            formData.append('name', name);
-            formData.append('size', size);
-            formData.append('quantity', quantity);
-            formData.append('price', price);
-            formData.append('id', id);
-
-            fetch('/upload-curved', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    location.reload();
-                } else {
-                    console.error('Failed to add item to cart');
-                }
-            })
-            .catch(error => {
-                console.error('Error adding item to cart:', error);
-            });
-        }
-
-        function addToCartKey() {
-            const uploadedImage = document.getElementById('photo-upload-KC').files[0];
-            const imageName = uploadedImage.name;
-            const imageURL = URL.createObjectURL(uploadedImage);
-            const name = "Keychain"
-            const quantity = document.getElementById('quantityKC').value;
-            const price = document.getElementById('priceKC').textContent.split(":")[1].trim();
-            const id = generateId();
-
-            const formData = new FormData();
-            formData.append('image', uploadedImage);
-            formData.append('name', name);
-            formData.append('quantity', quantity);
-            formData.append('price', price);
-            formData.append('id', id);
-
-            fetch('/upload-kc', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    location.reload();
-                } else {
-                    console.error('Failed to add item to cart');
-                }
-            })
-            .catch(error => {
-                console.error('Error adding item to cart:', error);
-            });
-        }
-
-        // Fetch the cart count and update the DOM
-        function updateCartCount() {
-            fetch('/cart/count') // Assuming this endpoint returns the cart count
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('cart-count').textContent = data.count;
-                })
-                .catch(error => console.error('Error updating cart count:', error));
-        }
-
-        // Call updateCartCount() when the page loads
-        window.addEventListener('load', updateCartCount);
-
-        function generateId() {
-            return '_' + Math.random().toString(36).substr(2, 9);
-        }
-     </script>
+     <script src="../scripts/light.js"></script>
+     <div id="popup" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #ffffff; color: black; padding: 25px; border-radius: 16px; border: 2px solid #D35F18; z-index: 1000; box-shadow: 0 8px 20px rgba(0,0,0,0.3); width: 90%; max-width: 350px; text-align: center;">
+        <p style="font-size: 20px; font-weight: bold; margin-bottom: 20px;">
+            Item added to the cart successfully!
+        </p>
+        <div style="display: flex; justify-content: space-between; gap: 12px;">
+            <button onclick="closePopup()" style="background-color: #252525; border: none; color: white; padding: 12px; border-radius: 10px; cursor: pointer; font-size: 16px; flex: 1; transition: background-color 0.3s;">
+                Continue Shopping
+            </button>
+            <a href="/cart" style="background-color: #28a745; text-decoration: none; color: white; padding: 12px; border-radius: 10px; font-size: 16px; flex: 1; text-align: center; transition: background-color 0.3s;">
+                Proceed to Cart
+            </a>
+        </div>
+    </div>    
 </body>
 </html>

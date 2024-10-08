@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://layers.app/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Admin Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('../images/indexBG.png');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            border-bottom: 2px solid #D35F18;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header a{
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .logo img {
+            width: 200px;
+            height: auto;
+            display: block;
+        }
+
+        .company-name {
+            font-size: 30px;
+            font-family: Arial, sans-serif;
+            margin-left: 35px;
+            margin-top: -20px;
+        }
+
+        .container-wrapper {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 0;
+        }
+
+        .container {
+            flex: 0 1 30%;
+            text-align: center;
+            margin: 0 10px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            perspective: 1000px;
+            background-color: #D35F18;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .container h2 {
+            width: 100%;
+            font-size: 28px;
+            color: #ffffff;
+            padding-top: 30px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: -5px;
+        }
+
+        .container a {
+            text-decoration: none;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .page-body{
+            padding: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/">
+            <div class="logo">
+                <img src="../images/logo.png">
+                <div class="company-name">SolidForms</div>
+            </div>
+        </a>
+    </div>
+    <div class = "page-body">
+        <div class = "title-container">
+            <div class="title">WELCOME ADMIN!</div>
+        </div>
+        <div class="container-wrapper">
+            <div class="container">
+                <a href="orders">
+                    <h2>ORDERS</h2>
+                </a>
+            </div>
+            <div class="container">
+                <a href="complaints">
+                    <h2>COMPLAINTS</h2>
+                </a>
+            </div>      
+        </div>
+    </div>   
+</body>
+</html>

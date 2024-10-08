@@ -9,6 +9,7 @@
         body {
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
+            font-family: Arial, sans-serif;
         }
 
         /* Center the header title */
@@ -16,7 +17,7 @@
             background-color: black; /* Black background color */
             color: white; /* White text color */
             padding: 20px 0; /* Add padding */
-            border-bottom: 5px solid #6d3ca4; /* Purple bottom border */
+            border-bottom: 2px solid #6d3ca4; /* Purple bottom border */
             display: flex; /* Use flexbox for layout */
             justify-content: space-between; /* Align items with space between */
             align-items: center; /* Align items vertically */
@@ -44,6 +45,7 @@
             display: flex; /* Use flexbox for layout */
             margin-right: 10px;
             font-size: 22px;
+            gap: 15px;
         }
 
         .additional-elements p {
@@ -145,7 +147,8 @@
         .page-body{
             background-image: url('../images/indexBG.png'); /* Background image */
             background-size: cover; /* Cover the entire container */
-            padding: 250px 0;
+            padding-top: 250px;
+            padding-bottom: 350px;
         }
         .footer_section {
             width: 100%;
@@ -159,7 +162,7 @@
 
         .footer_section .container-footer {
             width: 90%;
-            max-width: 1200px; /* Max width for the container */
+            max-width: 1201px; /* Max width for the container */
             margin: auto; /* Center the container */
         }
 
@@ -271,11 +274,11 @@
             border-radius: 50%;
             width: 300px;
             height: 300px;
-            position: absolute; /* Change position to absolute */
+            position: absolute; 
             animation: pulse 2s infinite alternate;
             top: 35%;
-            left: 38%; /* Position from the left */
-            transform: translate(-50%, -50%); /* Center the icon */
+            left: 39%; 
+            transform: translate(-50%, -50%); 
             z-index: 20;
             transition: all 0.1s ease-out;
             cursor: pointer;
@@ -317,6 +320,71 @@
             color: white; /* White color for text */
             margin-left: 25px;
         }
+
+        @media (max-width: 768px) {
+            .product-box {
+                width: 100%;
+            }
+            
+            .additional-elements {
+                gap: 0;
+            }
+
+            .icon {
+                left: 10%;
+            }
+
+            .company-name {
+                font-size: 24px;
+                margin-left: -20px;
+            }
+
+            .additional-elements {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: white;
+                margin-right: 10px;
+            }
+
+            .dropdown-menu {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #333;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                display: none;
+            }
+
+            .dropdown-menu a {
+                color: white;
+                text-decoration: none;
+                padding: 10px;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #444;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+
+            .dropdown-menu{
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -330,16 +398,30 @@
         <!-- Additional elements -->
         <div class="additional-elements">
             <a href="/"><p>Home</p></a>
-            <a href="/"><p>About</p></a>
-            <a href="/"><p>Contact Us</p></a>
+            <a href="/about"><p>About</p></a>
+            <a href="/contact"><p>Contact Us</p></a>
             <div class="shopping-cart">
-                <a href="/cart.html">
+                <a href="/cart">
                     <div class="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <div class="cart-count" id="cart-count">0</div>
                 </a>
             </div>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/cart">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="cart-count" id="cart-count-mobile">0</div>
+                </div>
+            </a>
         </div>
     </div>
     <div class = "page-body">
@@ -358,8 +440,8 @@
                  <div class="footer_menu">
                     <ul>
                        <li><a href="/">Home</a></li>
-                       <li><a href="about.html">About Us</a></li>
-                       <li><a href="contact.html">Contact Us</a></li>
+                       <li><a href="about">About Us</a></li>
+                       <li><a href="contact">Contact Us</a></li>
                     </ul>
                  </div>
               </div>
@@ -380,19 +462,19 @@
                        <li>
                           <a href="https://www.google.com/maps/place/Delta.Egy,+8th+korayesh+st,+off+Tarablous+st,+off,+Abbas+El-Akkad,+st,+Nasr+City,+Cairo+Governorate+11371/data=!4m2!3m1!1s0x14583f90f89c431b:0xddac41bb64ac6979?utm_source=mstt_1&entry=gps&lucs=47068615,,47068303&coh=179582&g_ep=CAESCTExLjg2LjQwMBgAINeCAyoSNDcwNjg2MTUsLDQ3MDY4MzAzQgJFRw%3D%3D"
                               target="_blank">
-                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10">Location</span>
+                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">Location</span>
                           </a>
                       </li>                       
                       <li>
                        <a href="tel:++201222513244">
-                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">Call: +20 1222 513 244</span>
+                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">+20 1222 513 244</span>
                        </a>
                      </li>                    
                      <li>
                        <a href="mailto:delta.egy.3d@gmail.com">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email: delta.egy.3d@gmail.com</span>
+                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">delta.egy.3d@gmail.com</span>
                        </a>
-                   </li>                    
+                    </li>                    
                     </ul>
                  </div>
               </div>
@@ -401,22 +483,9 @@
      </div>
      <div class="copyright_section">
         <div class="container-copyright">
-           <p class="copyright_text">2023 All Rights Reserved.</p>
+            <p class="copyright_text">© 2023 Delta.Egy - All Rights Reserved</p>
         </div>
      </div>
-     <script>
-        const item_picture = document.querySelector('.layers-transition');
-        const icon = document.querySelector('.icon');
-
-        function onClickIcon() {
-            if (item_picture.classList.contains('active')) {
-                item_picture.classList.remove('active');
-                icon.style.display = 'block'; // Show the icon
-            } else {
-                item_picture.classList.add('active');
-                icon.style.display = 'none'; // Hide the icon
-            }
-        }
-    </script>      
+     <script src="../scripts/print.js"></script>
 </body>
 </html>

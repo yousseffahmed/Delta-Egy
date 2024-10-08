@@ -4,43 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>Light-Up Photos</title>
+    <title>Success</title>
     <style>
         body {
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
+            font-family: Arial, sans-serif;
         }
 
-        /* Center the header title */
         .header {
-            background-color: black; /* Black background color */
-            color: white; /* White text color */
-            padding: 20px 0; /* Add padding */
-            border-bottom: 5px solid #6d3ca4; /* Purple bottom border */
-            display: flex; /* Use flexbox for layout */
-            justify-content: space-between; /* Align items with space between */
-            align-items: center; /* Align items vertically */
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+            border-bottom: 2px solid #D35F18;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Logo styles */
         .logo img {
-            width: 100px; /* Set logo width */
-            height: auto; /* Maintain aspect ratio */
-            display: inline-block; /* Make the image inline */
+            width: 100px;
+            height: auto;
+            display: inline-block;
         }
 
-        /* Delta.Egy text styles */
         .company-name {
-            margin-left: 10px; /* Add margin between logo and text */
-            display: inline-block; /* Make the text inline */
+            display: inline-block;
             font-size: 30px;
             font-family: Arial, sans-serif;
-            position: relative; /* Set position relative */
-            top: -40px; /* Move the text 10px upwards */
+            position: relative;
+            top: -35px;
         }
 
         /* Additional elements styles */
         .additional-elements {
+            gap: 15px;
             display: flex; /* Use flexbox for layout */
             margin-right: 10px;
             font-size: 22px;
@@ -79,7 +77,7 @@
 
         .footer_section .container-footer {
             width: 90%;
-            max-width: 1200px; /* Max width for the container */
+            max-width: 1201px; /* Max width for the container */
             margin: auto; /* Center the container */
         }
 
@@ -139,7 +137,7 @@
         }
 
         .footer_menu li a:hover {
-            color: #6d3ca4;
+            color: #D35F18;
         }
 
         .footer_section .location_text ul li::marker {
@@ -152,7 +150,7 @@
         }
 
         .footer_section .location_text ul li a:hover {
-            color: #6d3ca4;
+            color: #D35F18;
         }
 
         .copyright_section {
@@ -209,7 +207,7 @@
         }
 
         .container-thanks h1 {
-            color: #6d3ca4;
+            color: #D35F18;
             font-size: 36px;
             margin-bottom: 10px;
         }
@@ -219,6 +217,58 @@
             font-size: 20px;
         }
         
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 24px;
+                margin-left: -20px;
+            }
+
+            .additional-elements {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+                font-size: 24px;
+                color: white;
+                margin-right: 10px;
+            }
+
+            .dropdown-menu {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #333;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                display: none;
+            }
+
+            .dropdown-menu a {
+                color: white;
+                text-decoration: none;
+                padding: 10px;
+            }
+
+            .dropdown-menu a:hover {
+                background-color: #444;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+
+            .dropdown-menu{
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -227,16 +277,16 @@
         <!-- Logo and company name -->
         <div class="logo">
             <img src="../images/logo.png">
-            <div class="company-name">Delta.Egy</div>
+            <div class="company-name">SolidForms</div>
         </div>
         <!-- Additional elements -->
         <div class="additional-elements">
             <a href="/"><p>Home</p></a>
-            <a href="/"><p>About</p></a>
-            <a href="/"><p>Contact Us</p></a>
+            <a href="/about"><p>About</p></a>
+            <a href="/contact"><p>Contact Us</p></a>
             <!-- Shopping cart -->
             <div class="shopping-cart">
-                <a href="/cart.html">
+                <a href="/cart">
                     <div class="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
@@ -244,9 +294,23 @@
                 </a>
             </div>
         </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/cart">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="cart-count" id="cart-count-mobile">0</div>
+                </div>
+            </a>
+        </div>
     </div>
     <div class="container-thanks">
-        <h1>Thanks for choosing Delta.Egy</h1>
+        <h1>Thanks for choosing SolidForms</h1>
         <p>We will be in touch with you soon!</p>
         <p>Your order number is: <span id="orderNumber"></span></p>
     </div>
@@ -255,15 +319,15 @@
            <div class="row">
               <div class="col-lg-3 col-sm-6">
                  <h3 class="useful_text">About</h3>
-                 <p class="footer_text">Welcome to Delta.egy, a leading provider of cutting-edge 3D printing services based in Cairo, Egypt. At Delta.egy, we are dedicated to transforming ideas into reality through the power of additive manufacturing.</p>
+                 <p class="footer_text">Welcome to SolidForms, a leading provider of cutting-edge 3D printing services based in Cairo, Egypt. At SolidForms, we are dedicated to transforming ideas into reality through the power of additive manufacturing.</p>
               </div>
               <div class="col-lg-3 col-sm-6">
                  <h3 class="useful_text">Navigate</h3>
                  <div class="footer_menu">
                     <ul>
                        <li><a href="/">Home</a></li>
-                       <li><a href="about.html">About Us</a></li>
-                       <li><a href="contact.html">Contact Us</a></li>
+                       <li><a href="about">About Us</a></li>
+                       <li><a href="contact">Contact Us</a></li>
                     </ul>
                  </div>
               </div>
@@ -271,9 +335,9 @@
                  <h1 class="useful_text">Social Media</h1>
                  <div class="footer_menu">
                     <ul>
-                       <li><a href="https://instagram.com/delta.egy?igshid=MzNlNGNkZWQ4Mg==" target="_blank">Instagram</a></li>
-                       <li><a href="https://www.facebook.com/profile.php?id=100089996525547" target="_blank">Facebook</a></li>
-                       <li><a href="https://wa.me/+201211877907" target="_blank">WhatsApp</a></li>
+                       <li><a href="https://www.instagram.com/solidforms.eg?igsh=MTc2bDhud3l6anJoaw==" target="_blank">Instagram</a></li>
+                       <li><a href="https://www.tiktok.com/@solidforms.eg?_t=8q74gve3own&_r=1" target="_blank">Tiktok</a></li>
+                       <li><a href="https://wa.me/+201222513244" target="_blank">WhatsApp</a></li>
                     </ul>
                  </div>
               </div>
@@ -282,21 +346,21 @@
                  <div class="location_text">
                     <ul>
                        <li>
-                          <a href="https://www.google.com/maps/place/Delta.Egy,+8th+korayesh+st,+off+Tarablous+st,+off,+Abbas+El-Akkad,+st,+Nasr+City,+Cairo+Governorate+11371/data=!4m2!3m1!1s0x14583f90f89c431b:0xddac41bb64ac6979?utm_source=mstt_1&entry=gps&lucs=47068615,,47068303&coh=179582&g_ep=CAESCTExLjg2LjQwMBgAINeCAyoSNDcwNjg2MTUsLDQ3MDY4MzAzQgJFRw%3D%3D"
+                          <a href="https://maps.app.goo.gl/TuUR5Y7rJQ5ozEvY7"
                               target="_blank">
-                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10">Location</span>
+                              <i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">Location</span>
                           </a>
                       </li>                       
                       <li>
                        <a href="tel:++201222513244">
-                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10">Call: +20 1222 513 244</span>
+                           <i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">+20 1222 513 244</span>
                        </a>
                      </li>                    
                      <li>
-                       <a href="mailto:delta.egy.3d@gmail.com">
-                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10">Email: delta.egy.3d@gmail.com</span>
+                       <a href="mailto:solidforms3d@gmail.com">
+                           <i class="fa fa-envelope" aria-hidden="true"></i><span class="padding_left_10" style="margin-left: 5px;">solidforms3d@gmail.com</span>
                        </a>
-                   </li>                    
+                    </li>                    
                     </ul>
                  </div>
               </div>
@@ -305,28 +369,9 @@
      </div>
      <div class="copyright_section">
         <div class="container-copyright">
-           <p class="copyright_text">2023 All Rights Reserved.</p>
+            <p class="copyright_text">© 2024 SolidForms - All Rights Reserved</p>
         </div>
      </div>
-     <script>
-        // Fetch the cart count and update the DOM
-        function updateCartCount() {
-            fetch('/cart/count') // Assuming this endpoint returns the cart count
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('cart-count').textContent = data.count;
-                })
-                .catch(error => console.error('Error updating cart count:', error));
-        }
-
-        // Call updateCartCount() when the page loads
-        window.addEventListener('load', updateCartCount);
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const orderNumber = urlParams.get('orderNumber');
-
-        // Display order number on the page
-        document.getElementById('orderNumber').textContent = orderNumber;
-     </script>
+     <script src="../scripts/success.js"></script>
 </body>
 </html>

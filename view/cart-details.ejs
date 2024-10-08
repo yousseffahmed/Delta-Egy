@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .item img {
+            max-width: 100px;
+            max-height: 100px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #D35F18;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #D35F18;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cart Details for Order: <%= order.orderNumber %></h1>
+    <div class="cart-details">
+        <h2>Items:</h2>
+        <% order.items.forEach(item => { %>
+            <div class="item">
+                <% if(item.name === "Flat Frame" || item.name === "Curved Frame" || item.name === "Keychain") { %>
+                    <a href="/uploads/<%= item.image.filename %>" download="<%= item.image.filename %>">
+                        <img src="/uploads/<%= item.image.filename %>" alt="Uploaded Image">
+                    </a>
+                <% } else { %>
+                    <!-- <a href="<%= item.image %>" download="product-image">
+                        <img src="<%= item.image %>" alt="Product Image">
+                    </a> -->
+                <% } %>
+                <p><strong>Item Name:</strong> <%= item.name %></p>
+                <p><strong>Size:</strong> <%= item.size %></p>
+                <p><strong>Stand Included:</strong> <%= item.includeStand %></p>
+                <p><strong>Quantity:</strong> <%= item.quantity %></p>
+                <p><strong>Price:</strong> <%= item.price %></p>
+            </div>
+        <% }); %>
+        <h2>Total: <%= order.total %></h2>
+        <h2>Status: <%= order.status %></h2>
+    </div>
+    <button class="back-button" onclick="history.back()">Go Back</button>
+</body>
+</html>
