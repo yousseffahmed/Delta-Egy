@@ -9,12 +9,13 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
+const MongoStore = require('connect-mongo');
 
 const mongoURI = process.env.MONGO_URI;
 const emailUser = process.env.EMAIL_USER;
 const emailPass = process.env.EMAIL_PASS;
 
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoURI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB connection error:", err));
 
@@ -65,10 +66,11 @@ app.use((err, req, res, next) => {
 });
 
 app.use(session({
-    secret: 'secret',
+    secret: 'yourSecretKey',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }
+    cookie: { secure: process.env.NODE_ENV === 'production' },
+    store: MongoStore.create({ mongoUrl: mongoURI })
 }));
 
 
