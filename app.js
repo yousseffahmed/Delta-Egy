@@ -69,6 +69,8 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!');
 });
 
+app.set('trust proxy', 1);
+
 app.use(session({
     secret: 'yourSecretKey',
     resave: false,
@@ -100,10 +102,20 @@ app.use('/uploads', express.static('uploads'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'view'));
 
+app.get('/test-session', (req, res) => {
+    if (!req.session.views) {
+        req.session.views = 1;
+    } else {
+        req.session.views++;
+    }
+    res.send(`Number of views: ${req.session.views}`);
+});
+
 app.get('/', (req, res) => {
     if (!req.session.cart || !Array.isArray(req.session.cart)) {
         req.session.cart = [];
     }
+    req.session.test = "this is a test";
     res.sendFile(path.join(__dirname, 'view/index.html'));
 });
 
