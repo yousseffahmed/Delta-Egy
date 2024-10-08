@@ -26,7 +26,7 @@ const server = http.createServer(app);
 const bodyParser = require('body-parser');
 
 const hostname = '127.0.0.1';
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const Product = require('./models/products');
 const Order = require('./models/orders');
@@ -630,6 +630,6 @@ app.post('/paymob-payment', async (req, res) => {
 });
 
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
+server.listen(port, '0.0.0.0', () => {
+    console.log(`Server running at http://0.0.0.0:${port}/`);
+  });
