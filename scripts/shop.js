@@ -32,14 +32,14 @@ window.addEventListener('load', updateCartCount);
 
 function updatePrice(productId, unitPrice) {
     const quantity = document.getElementById(`quantity-${productId}`).value;
-    const newPrice = (unitPrice * quantity).toFixed(2);
-    document.getElementById(`price-${productId}`).textContent = `${newPrice}`;
+    const newPrice = (unitPrice * quantity);
+    document.getElementById(`price-${productId}`).textContent = `${newPrice} LE`;
 }
 
 function addToCart(productId) {
     const quantity = document.getElementById(`quantity-${productId}`).value;
     const color = document.getElementById(`color-${productId}`).value;
-    
+
     fetch('/cart/add', {
         method: 'POST',
         headers: {
@@ -50,9 +50,7 @@ function addToCart(productId) {
     .then(response => response.json())
     .then(data => {
         if (data.message === 'Product added to cart') {
-            const popup = document.getElementById('popup');
-            popup.style.display = 'block';
-
+            openPopup();
             updateCartCount();
         } else {
             alert(data.message);
@@ -61,8 +59,16 @@ function addToCart(productId) {
     .catch(error => console.error('Error adding product to cart:', error));
 }
 
+function openPopup() {
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("popup").style.display = "block";
+    document.body.style.overflow = "hidden"; // Prevent scrolling
+}
+
 function closePopup() {
-    document.getElementById('popup').style.display = 'none';
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("popup").style.display = "none";
+    document.body.style.overflow = "auto"; // Re-enable scrolling
 }
 
 function toggleMenu() {
@@ -110,4 +116,12 @@ function sortProducts() {
     const productContainer = document.querySelector('.products');
     productContainer.innerHTML = '';
     products.forEach(product => productContainer.appendChild(product));
+}
+
+window.onclick = function(event) {
+    const popup = document.getElementById("popup");
+    const overlay = document.getElementById("overlay");
+    if (event.target === overlay) {
+        closePopup();
+    }
 }

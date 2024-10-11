@@ -398,8 +398,8 @@
                         <p class="item-name" style="font-weight: bold;"><%= item.color %> <%= item.name %></p>
                         <div class="quantity">
                             <label for="quantity-<%= item.id %>">Quantity:</label>
-                            <input type="number" id="quantity-<%= item.id %>" class="quantity-input" data-item-id="<%= item.id %>" value="<%= item.quantity %>" min="1">
-                        </div>
+                            <input type="number" id="quantity-<%= item.id %>" class="quantity-input" data-item-id="<%= item.id %>" value="<%= item.quantity %>" min="1" oninput="validateQuantity(this)">
+                        </div>                        
                         <p>Price: <%= item.price %> LE</p>
                         <div class="subtotal" style="display: none;">Subtotal: <%= item.quantity * item.price %></div>
                     </div>

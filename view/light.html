@@ -742,6 +742,12 @@
         </div>
      </div>
      <script src="../scripts/light.js"></script>
+     <!-- Progress Bar -->
+    <div id="progress-container" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); text-align: center; z-index: 1000;">
+        <p>Uploading image...</p>
+        <progress id="progress-bar" value="0" max="100" style="width: 100%; height: 20px;"></progress>
+    </div>
+     <div id="overlay" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
      <div id="popup" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #ffffff; color: black; padding: 25px; border-radius: 16px; border: 2px solid #D35F18; z-index: 1000; box-shadow: 0 8px 20px rgba(0,0,0,0.3); width: 90%; max-width: 350px; text-align: center;">
         <p style="font-size: 20px; font-weight: bold; margin-bottom: 20px;">
             Item added to the cart successfully!

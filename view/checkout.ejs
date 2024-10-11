@@ -451,25 +451,24 @@
                                 <% } %>
                                 <div class="item-details">
                                     <p class="item-name" style="font-weight: bold;"><%= item.color %> <%= item.name %></p>
-                                    <!-- Quantity input -->
                                     <div>
                                         <p>Quantity: <%= item.quantity %></p>
                                     </div>
                                     <p>Price: <%= item.price %> LE</p>
-                                    <div class="subtotal" style="display: none;">Subtotal: <%= item.quantity * item.price %></div>
                                 </div>
                             </div>
                             <% subtotal += item.quantity * item.price; %>
                         <% }); %>
                         <div class="cart-summary">
-                            <p>Subtotal: <span id="cart-subtotal"><%= subtotal %></span> LE</p>
+                            <p id="delivery-fee">Delivery Fee: 0 LE</p>
+                            <p>Total: <span id="cart-subtotal"><%= subtotal %></span> LE</p>
                             <input type="hidden" id="subtotal" value="<%= subtotal %>">
                         </div>
                     <% } else { %>
                         <p class="empty-cart">No items in the cart.</p>
                     <% } %>
-                </div>   
-            </fieldset>
+                </div>
+            </fieldset>                       
 
             <button type="submit">Place Order</button>
         </form>

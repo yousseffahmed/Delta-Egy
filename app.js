@@ -323,7 +323,11 @@ app.post('/submit_order', async (req, res) => {
 
     const orderNumber = generateOrderNumber();
 
+    const deliveryFee = shippingMethod === 'delivery' ? 80 : 0;
+
+    let subtotal = 0;
     const updatedCart = req.session.cart.map(item => {
+        subtotal += item.quantity * item.price;
         if (item.name === "Flat Frame" || item.name === "Curved Frame" || item.name === "Keychain") {
             item.image = {
                 filename: item.image.filename || 'default.jpg',
@@ -337,6 +341,8 @@ app.post('/submit_order', async (req, res) => {
         }
         return item;
     });
+
+    const total = subtotal + deliveryFee;
 
     const order = new Order({
         orderNumber,
@@ -353,7 +359,7 @@ app.post('/submit_order', async (req, res) => {
         post,
         workingAddress,
         items: updatedCart,
-        total: req.session.total,
+        total: total,
     });
 
     try {
@@ -367,6 +373,9 @@ app.post('/submit_order', async (req, res) => {
                 <p><strong>Email:</strong> ${email}</p>
                 <p><strong>Phone Number:</strong> ${number}</p>
                 <p><strong>Shipping Method:</strong> ${shippingMethod}</p>
+                ${shippingMethod === 'pickup' ? `
+                    <p><strong>Location: https://maps.app.goo.gl/TuUR5Y7rJQ5ozEvY7</strong></p>
+                ` : ''}
                 ${shippingMethod === 'delivery' ? `
                 <fieldset style="border: 1px solid #ccc; padding: 10px; margin-top: 20px;">
                     <legend style="color: #D35F18;">Shipping Address</legend>
@@ -395,7 +404,9 @@ app.post('/submit_order', async (req, res) => {
         });
 
         messageCustomer += `
-            <p style="margin-top: 20px;"><strong>Total:</strong> ${req.session.total}</p>
+            <p style="margin-top: 20px;"><strong>Subtotal:</strong> ${subtotal} LE</p>
+            <p style="margin-top: 20px;"><strong>Delivery Fee:</strong> ${deliveryFee} LE</p>
+            <p style="margin-top: 20px;"><strong>Total:</strong> ${total} LE</p>
             </div>
         `;
 
@@ -574,7 +585,7 @@ app.post('/cart/add', async (req, res) => {
             id: generateId()
         };
 
-        cartItem.price = cartItem.price * cartItem.quantity;
+        cartItem.price = cartItem.price;
 
         req.session.cart.push(cartItem);
 

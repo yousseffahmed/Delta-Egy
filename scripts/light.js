@@ -8,7 +8,6 @@ document.getElementById("switch_toggle").addEventListener("change", function() {
 });
 
 const photoUploadInputKC = document.getElementById("photo-upload-KC");
-
 const addToCartButtonKC = document.getElementById("add-to-cart-btn-KC");
 
 photoUploadInputKC.addEventListener("change", function() {
@@ -20,7 +19,6 @@ photoUploadInputKC.addEventListener("change", function() {
 });
 
 const photoUploadInputFLAT = document.getElementById("photo-upload-FLAT");
-
 const addToCartButtonFLAT = document.getElementById("add-to-cart-btn-FLAT");
 
 photoUploadInputFLAT.addEventListener("change", function() {
@@ -32,7 +30,6 @@ photoUploadInputFLAT.addEventListener("change", function() {
 });
 
 const photoUploadInputCurved = document.getElementById("photo-upload-curved");
-
 const addToCartButtonCurved = document.getElementById("add-to-cart-btn-curved");
 
 photoUploadInputCurved.addEventListener("change", function() {
@@ -68,7 +65,6 @@ function updatePriceFlat() {
     }
 
     const quantity = parseInt(quantitySelectFlat.value);
-
     const totalPrice = basePrice * quantity;
 
     priceLabelFLAT.textContent = "Price: " + totalPrice;
@@ -100,7 +96,6 @@ function updatePriceCurved() {
     }
 
     const quantity = parseInt(quantitySelectCurved.value);
-
     const totalPrice = basePrice * quantity;
 
     priceLabelCurved.textContent = "Price: " + totalPrice;
@@ -119,7 +114,6 @@ function updatePriceKC() {
     let basePrice = 80;
 
     const quantity = parseInt(quantitySelectKC.value);
-
     const totalPrice = basePrice * quantity;
 
     priceLabelKC.textContent = "Price: " + totalPrice;
@@ -133,11 +127,16 @@ updatePriceCurved();
 
 function addToCartFlat() {
     const uploadedImage = document.getElementById('photo-upload-FLAT').files[0];
-    const name = "Flat Frame"
+    const name = "Flat Frame";
     const size = document.querySelector('input[name="size-flat"]:checked').value;
     const includeStand = document.querySelector('input[name="stand-flat"]:checked').value;
-    const quantity = document.getElementById('quantityFlat').value;
-    const price = document.getElementById('priceFlat').textContent.split(":")[1].trim();
+    const quantity = parseInt(document.getElementById('quantityFlat').value, 10);
+    let price = document.getElementById('priceFlat').textContent.split(":")[1].trim();
+
+    price = parseFloat(price);
+
+    const unitPrice = (price / quantity).toFixed(2);
+
     const id = generateId();
 
     const formData = new FormData();
@@ -146,34 +145,41 @@ function addToCartFlat() {
     formData.append('size', size);
     formData.append('includeStand', includeStand);
     formData.append('quantity', quantity);
-    formData.append('price', price);
+    formData.append('price', unitPrice);
     formData.append('id', id);
 
-    fetch('/upload-flat', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (response.ok) {
-            const popup = document.getElementById('popup');
-            popup.style.display = 'block';
-        } else {
-            console.error('Failed to add item to cart');
+    document.getElementById('progress-container').style.display = 'block';
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.upload.addEventListener('progress', function (e) {
+        if (e.lengthComputable) {
+            const percentComplete = (e.loaded / e.total) * 100;
+            document.getElementById('progress-bar').value = percentComplete;
         }
-    })
-    .catch(error => {
-        console.error('Error adding item to cart:', error);
     });
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById('progress-container').style.display = 'none';
+            openPopup();
+        }
+    };
+
+    xhr.open('POST', '/upload-flat', true);
+    xhr.send(formData);
 }
 
 function addToCartCurved() {
     const uploadedImage = document.getElementById('photo-upload-curved').files[0];
-    const imageName = uploadedImage.name;
-    const imageURL = URL.createObjectURL(uploadedImage);
-    const name = "Curved Frame"
+    const name = "Curved Frame";
     const size = document.querySelector('input[name="size-curved"]:checked').value;
     const quantity = document.getElementById('quantityCurved').value;
-    const price = document.getElementById('priceCurved').textContent.split(":")[1].trim();
+    let price = document.getElementById('priceCurved').textContent.split(":")[1].trim();
+
+    price = parseFloat(price);
+    const unitPrice = (price / quantity).toFixed(2);
+
     const id = generateId();
 
     const formData = new FormData();
@@ -181,58 +187,82 @@ function addToCartCurved() {
     formData.append('name', name);
     formData.append('size', size);
     formData.append('quantity', quantity);
-    formData.append('price', price);
+    formData.append('price', unitPrice);
     formData.append('id', id);
 
-    fetch('/upload-curved', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (response.ok) {
-            const popup = document.getElementById('popup');
-            popup.style.display = 'block';
-        } else {
-            console.error('Failed to add item to cart');
+    document.getElementById('progress-container').style.display = 'block';
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.upload.addEventListener('progress', function (e) {
+        if (e.lengthComputable) {
+            const percentComplete = (e.loaded / e.total) * 100;
+            document.getElementById('progress-bar').value = percentComplete;
         }
-    })
-    .catch(error => {
-        console.error('Error adding item to cart:', error);
     });
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById('progress-container').style.display = 'none';
+            openPopup();
+        }
+    };
+
+    xhr.open('POST', '/upload-curved', true);
+    xhr.send(formData);
 }
 
 function addToCartKey() {
     const uploadedImage = document.getElementById('photo-upload-KC').files[0];
-    const imageName = uploadedImage.name;
-    const imageURL = URL.createObjectURL(uploadedImage);
-    const name = "Keychain"
+    const name = "Keychain";
     const quantity = document.getElementById('quantityKC').value;
-    const price = document.getElementById('priceKC').textContent.split(":")[1].trim();
+    let price = document.getElementById('priceKC').textContent.split(":")[1].trim();
+
+    price = parseFloat(price);
+    const unitPrice = (price / quantity).toFixed(2);
+
     const id = generateId();
 
     const formData = new FormData();
     formData.append('image', uploadedImage);
     formData.append('name', name);
     formData.append('quantity', quantity);
-    formData.append('price', price);
+    formData.append('price', unitPrice);
     formData.append('id', id);
 
-    fetch('/upload-kc', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (response.ok) {
-            const popup = document.getElementById('popup');
-            popup.style.display = 'block';
-        } else {
-            console.error('Failed to add item to cart');
+    document.getElementById('progress-container').style.display = 'block';
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.upload.addEventListener('progress', function (e) {
+        if (e.lengthComputable) {
+            const percentComplete = (e.loaded / e.total) * 100;
+            document.getElementById('progress-bar').value = percentComplete;
         }
-    })
-    .catch(error => {
-        console.error('Error adding item to cart:', error);
     });
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById('progress-container').style.display = 'none';
+            openPopup();
+        }
+    };
+
+    xhr.open('POST', '/upload-kc', true);
+    xhr.send(formData);
 }
+
+function openPopup() {
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('popup').style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('popup').style.display = 'none';
+    location.reload();
+}
+
 
 function updateCartCount() {
     fetch('/cart/count')
@@ -257,8 +287,4 @@ function toggleMenu() {
     } else {
         dropdownMenu.style.display = "flex";
     }
-}
-
-function closePopup() {
-    location.reload();
 }

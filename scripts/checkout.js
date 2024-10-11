@@ -11,8 +11,10 @@ function updateCartCount() {
 window.addEventListener('load', updateCartCount);
 
 function toggleShippingAddress() {
-    var shippingMethod = document.querySelector('input[name="shippingMethod"]:checked').value;
-    var shippingAddressFieldset = document.getElementById('shipping-address-fieldset');
+    const fees = 80;
+    const shippingMethod = document.querySelector('input[name="shippingMethod"]:checked').value;
+    const shippingAddressFieldset = document.getElementById('shipping-address-fieldset');
+    
     const addressField = document.getElementById('address');
     const city = document.getElementById('city');
     const building = document.getElementById('building');
@@ -20,6 +22,11 @@ function toggleShippingAddress() {
     const post = document.getElementById('post');
     const aprt = document.getElementById('aprt');
     
+    const cartSubtotalElement = document.getElementById('cart-subtotal');
+    const subtotalValueElement = document.getElementById('subtotal');
+    const deliveryFeeElement = document.getElementById('delivery-fee');
+    console.log(deliveryFeeElement);
+    let originalSubtotal = parseFloat(subtotalValueElement.value);
 
     if (shippingMethod === 'delivery') {
         shippingAddressFieldset.style.display = 'block';
@@ -29,16 +36,34 @@ function toggleShippingAddress() {
         floor.setAttribute('required', '');
         post.setAttribute('required', '');
         aprt.setAttribute('required', '');
+
+        const newTotal = originalSubtotal + fees;
+        cartSubtotalElement.textContent = newTotal;
+        subtotalValueElement.value = newTotal;
+        deliveryFeeElement.textContent = "Delivery Fee: 80 LE";
+        
     } else {
         shippingAddressFieldset.style.display = 'none';
         addressField.removeAttribute('required');
-        city.removeAttribute('required', '');
-        building.removeAttribute('required', '');
-        floor.removeAttribute('required', '');
-        post.removeAttribute('required', '');
-        aprt.removeAttribute('required', '');
+        city.removeAttribute('required');
+        building.removeAttribute('required');
+        floor.removeAttribute('required');
+        post.removeAttribute('required');
+        aprt.removeAttribute('required');
+
+        const newTotal = originalSubtotal - fees;
+        cartSubtotalElement.textContent = newTotal;
+        subtotalValueElement.value = newTotal;
+        deliveryFeeElement.textContent = "Delivery Fee: 0 LE";
     }
 }
+
+document.querySelectorAll('input[name="shippingMethod"]').forEach(function(input) {
+    input.addEventListener('change', toggleShippingAddress);
+});
+
+window.addEventListener('load', toggleShippingAddress);
+
 
 var shippingMethodInputs = document.querySelectorAll('input[name="shippingMethod"]');
 shippingMethodInputs.forEach(function(input) {

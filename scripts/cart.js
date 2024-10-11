@@ -26,7 +26,7 @@ document.getElementById('checkout').addEventListener('click', function() {
         throw new Error('Network response was not ok.');
     })
     .then(data => {
-        window.location.href = '/checkout'
+        window.location.href = '/checkout';
     })
     .catch(error => {
         console.error('Error updating total:', error);
@@ -65,9 +65,13 @@ function toggleMenu() {
 document.querySelectorAll('.quantity-input').forEach(input => {
     input.addEventListener('change', function () {
         const itemId = this.dataset.itemId;
-        const newQuantity = this.value;
-        
-        updateCartQuantity(itemId, newQuantity);
+        const newQuantity = parseInt(this.value, 10);
+
+        if (newQuantity === 0) {
+            removeItemFromCart(itemId);
+        } else {
+            updateCartQuantity(itemId, newQuantity);
+        }
     });
 });
 
@@ -85,9 +89,36 @@ function updateCartQuantity(itemId, newQuantity) {
     .then(data => {
         if (data.success) {
             document.getElementById('cart-subtotal').textContent = data.newSubtotal;
+            updateCartCount();
         }
     })
     .catch(error => {
         console.error('Error:', error);
     });
+}
+
+function removeItemFromCart(itemId) {
+    fetch(`/cart/remove/${itemId}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            throw new Error('Failed to remove item from cart');
+        }
+    })
+    .catch(error => {
+        console.error('Error removing item from cart:', error);
+    });
+}
+
+function validateQuantity(input) {
+    // Remove any non-numeric characters (except .)
+    input.value = input.value.replace(/[^0-9]/g, '');
+
+    // Ensure the value is not less than 1
+    if (input.value < 1 || input.value === "") {
+        input.value = 1;
+    }
 }
