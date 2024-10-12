@@ -10,6 +10,8 @@ function updateCartCount() {
 
 window.addEventListener('load', updateCartCount);
 
+let isDeliveryFeeApplied = false;
+
 function toggleShippingAddress() {
     const fees = 80;
     const shippingMethod = document.querySelector('input[name="shippingMethod"]:checked').value;
@@ -25,9 +27,8 @@ function toggleShippingAddress() {
     const cartSubtotalElement = document.getElementById('cart-subtotal');
     const subtotalValueElement = document.getElementById('subtotal');
     const deliveryFeeElement = document.getElementById('delivery-fee');
-    console.log(deliveryFeeElement);
     let originalSubtotal = parseFloat(subtotalValueElement.value);
-
+    
     if (shippingMethod === 'delivery') {
         shippingAddressFieldset.style.display = 'block';
         addressField.setAttribute('required', '');
@@ -37,11 +38,13 @@ function toggleShippingAddress() {
         post.setAttribute('required', '');
         aprt.setAttribute('required', '');
 
-        const newTotal = originalSubtotal + fees;
-        cartSubtotalElement.textContent = newTotal;
-        subtotalValueElement.value = newTotal;
-        deliveryFeeElement.textContent = "Delivery Fee: 80 LE";
-        
+        if (!isDeliveryFeeApplied) {
+            const newTotal = originalSubtotal + fees;
+            cartSubtotalElement.textContent = newTotal;
+            subtotalValueElement.value = newTotal;
+            deliveryFeeElement.textContent = "Delivery Fee: 80 LE";
+            isDeliveryFeeApplied = true;
+        }
     } else {
         shippingAddressFieldset.style.display = 'none';
         addressField.removeAttribute('required');
@@ -51,10 +54,13 @@ function toggleShippingAddress() {
         post.removeAttribute('required');
         aprt.removeAttribute('required');
 
-        const newTotal = originalSubtotal - fees;
-        cartSubtotalElement.textContent = newTotal;
-        subtotalValueElement.value = newTotal;
-        deliveryFeeElement.textContent = "Delivery Fee: 0 LE";
+        if (isDeliveryFeeApplied) {
+            const newTotal = originalSubtotal - fees;
+            cartSubtotalElement.textContent = newTotal;
+            subtotalValueElement.value = newTotal;
+            deliveryFeeElement.textContent = "Delivery Fee: 0 LE";
+            isDeliveryFeeApplied = false;
+        }
     }
 }
 
