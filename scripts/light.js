@@ -1,9 +1,9 @@
 document.getElementById("switch_toggle").addEventListener("change", function() {
     var lightImage = document.getElementById("light_image");
     if (this.checked) {
-       lightImage.src = "images/on.png";
+       lightImage.src = "images/on.jpeg";
     } else {
-       lightImage.src = "images/off.png";
+       lightImage.src = "images/off.jpeg";
     }
 });
 
