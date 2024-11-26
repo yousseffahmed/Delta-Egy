@@ -111,7 +111,7 @@ const quantitySelectKC = document.getElementById("quantityKC");
 const priceLabelKC = document.querySelector("#priceKC");
 
 function updatePriceKC() {
-    let basePrice = 120;
+    let basePrice = 150;
 
     const quantity = parseInt(quantitySelectKC.value);
     const totalPrice = basePrice * quantity;
